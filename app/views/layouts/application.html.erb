@@ -5,11 +5,31 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
+    <!--bootstrap-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/42591157a3.js" crossorigin="anonymous"></script>
+
+    <header>
+      <%= render'layouts/header' %>
+    </header>
     <%= yield %>
-  </body>
+
+  <!-- Footer -->
+    <footer class="py-5 bg-white">
+     <div class="container">
+      <p class="m-0 text-center">Copyright &copy; EClothes 2021</p>
+     </div>
+    <!-- /.container -->
+    </footer>
+    <!-- /.footer -->
+    </body>
 </html>

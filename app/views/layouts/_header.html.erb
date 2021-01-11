@@ -1,0 +1,49 @@
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">Eclothes</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="/reviews/new"><i class="far fa-plus-square"></i></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/reviews">Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/sign_out">Log Out</a>
+          </li>
+          <% else %>
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/homes/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/reviews">Reviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/sign_up">Sign Up</a>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>

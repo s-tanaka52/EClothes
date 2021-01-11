@@ -1,0 +1,32 @@
+<div class='container'>
+<div class="row">
+    <div class="col-xl-10">
+        <div class="new_reviews">
+            <h2 class="title">Reviews</h2>
+              <div class="col-xl-10 reviews-box mr-10 text-center card-group" style="width:60rem">
+               <% @reviews.each do |review| %>
+               <section class="card col-xl-5">
+                <div class="img">
+                    <%= link_to reviews_path(review.id), class: "width" do %>
+                      <%= attachment_image_tag review, :image, :fill, 100, 100 %>
+                    <% end %>
+                </div>
+                <div class="card-content">
+                 <h6 class="card-title">Title: <%= review.title %></h6>
+                 <p class="card-text">Review: <%= review.body%></p>
+                </div>
+                <div class="comments">
+                  <p>Comment：<%= review.review_comments.count %></p>
+                  <p>Favorite: ♥<%= review.favorites.count %></p>
+                </div>
+                <div class="card-link">
+                 <div class="a"><%= link_to "View Moew", review_path(review) %></div>
+                 <div class="a"><%= link_to "#{review.user.user_name}", user_path(review.user), class: "card-link"%></div>
+                </div>
+                </section>
+                <% end %>
+               </div>
+         </div>
+    </div>
+</div>
+</div>

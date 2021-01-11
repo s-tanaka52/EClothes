@@ -1,0 +1,16 @@
+// Place all the styles related to the ReviewComments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card-container{
+  display: block;
+  margin-top: 10px;
+  padding: 2px;
+  background-color: #ffffff;
+  width: 100%;
+}
+.card-box{
+  display: inline-block;
+  width: 250px;
+  text-align: left;
+}
