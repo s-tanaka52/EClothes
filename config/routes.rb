@@ -1,25 +1,11 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'users/show'
-  get 'users/edit'
-  get 'users/mypage'
-  get 'users/unsubscribe'
-  get 'reviews/index'
-  get 'reviews/show'
-  get 'reviews/new'
-  get 'reviews/edit'
-  get 'reviews/hot_reviews'
-  get 'reviews/new_reviews'
-  get 'homes/top'
-  get 'homes/enter'
-  get 'homes/about'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :users
 
-  root to: 'homes#enter'
+  root to: 'homes#about'
   get 'homes/top' => 'homes#top'
-  get 'homes/about' => 'homes#about'
+  get 'homes/enter' => 'homes#enter'
 
   get 'users/my_page' => 'users#mypage'
   get 'users/unsubscribe' => 'users#unsubscribe'

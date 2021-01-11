@@ -1,18 +1,20 @@
+<div class="container">
 <div class="row">
     <div class="col-xl-12 text center">
-      <h2 class="text text-center">About "EClothes"?</h2>
+      <h2 class="text text-center mt-5">About "EClothes"?</h2>
         <div class="about-visual">
-          <div class="carousel-item active text-center">
-              <img src="/about.png">
+          <div class="carousel-item active text-center mt-5">
+              <%= image_tag "about.png", alt: "First slide", class: "text-center" %>
             </div>
         </div>
-        <div class="text-box text-center mt-4">
-          text<br>
-          text<br>
-          text<br>
-        </div>
-        <div class="top-bottom text-center mt-4">
-          <%= link_to "TOP", root_path, class: "btn btn-primary" %>
-        </div>
     </div>
+    <div class="col-xl-12 text-box text-center mt-4">
+          text<br>
+          text<br>
+          text<br>
+    </div>
+    <div class="col-xl-12 top-bottom text-center mt-4">
+      <%= link_to "TOP", homes_top_path , class: "btn btn-primary text-center" %>
+    </div>
+</div>
 </div>
