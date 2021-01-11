@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+<div class="admins-item-body">
+
+  <h2 class="col-xl-10 admins-title-name"><%= @user.user_name %>'s info</h2>
+
+    <%= form_with model:@user, url: user_path(@user.id), method: :patch, local:true do |f| %>
+
+      <div class="col-lg-4">
+          <!--%= attachment_image_tag @user, :image, :fill, 60, 60, fallback: "noimage.jpg"%-->
+            <label for="inputImage">ProfileImage</label>
+          <%= f.attachment_field :image, placeholder: "プロフィール画像" %>
+      </div>
+
+      <div class="col-lg-7">
+        <table class="admins_item_show_table">
+          <tr>
+            <th class="admin-new-item-name"><%= f.label "name(last)" %></th>
+            <td class="admin-new-item-explanation"><%= f.text_field :last_name, size: 40 %></td>
+          </tr>
+          <tr>
+            <th class="admin-new-item-name"><%= f.label "name(first)" %></th>
+            <td class="admin-new-item-explanation"><%= f.text_field :first_name, size: 40 %></td>
+          </tr>
+          <tr>
+            <th class="admin-new-item-name"><%= f.label "User Name" %></th>
+            <td class="admin-new-item-explanation"><%= f.text_field :user_name, size: 40  %></td>
+          </tr>
+          <tr>
+            <th class="admin-new-item-name"><%= f.label "Message" %></th>
+            <td class="admin-new-item-explanation"><%= f.text_area :introduction, size: "40×15" %>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-lg-1 admins-item-edit">
+       <%= f.submit "UPDATE", class: "btn btn-1 pull-right admins-item-edit-btn" %>
+      </div>
+    </div>
+    <% end %>
+    <div class="delete-user">
+      <%= link_to "Withdrawal", users_unsubscribe_path(@user), class: "btn btn-denger" %>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+

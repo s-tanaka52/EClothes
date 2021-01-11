@@ -1,0 +1,113 @@
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-10">
+
+        <!-- Title -->
+        <h1 class="mt-4"><%= @review.title%></h1>
+
+        <!-- Author -->
+        <p class="lead">
+          by
+          <%= link_to "#{@review.user.user_name}", user_path(@review.user) %>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on <%= @review.created_at %>
+        <% if @review.user == current_user %>
+            <%= link_to "Edit", edit_review_path(@review), class: "btn btn-primary ml-5 mr-2" %>
+            <%= link_to "Delete", review_path(@review), method: :delete, class: "btn btn-danger" %>
+        <% end %>
+        </p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <%= attachment_image_tag @review, :image, :fill, 300, 300 %>
+        <hr>
+
+        <!-- Review Content -->
+        <p class="lead mb-5"><%= @review.body %></p>
+
+        <!-- Tags index -->
+        <div class="tags">
+          <h4 class="title">Tags</h4>
+          <% if @tags.present? %>
+            <% @tags.each do |tag| %>
+              <%= link_to "#{tag.name}", ' /reviews/tags/:id', class: "btn btn--orange btn--radius" %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="category">
+          <tr>
+            <th>Category</th>
+              <td>
+                <%= link_to "#{@category_parent.name}","#" %>
+                <%= link_to "#{@category_child.name}","#" %>
+                <%= link_to "#{@category_grandchild.name}","#" %>
+              </td>
+          </tr>
+        </div>
+
+        <!--Favorite-->
+        <div class="favorite mt-5">
+        <% if @review.favorited_by?(current_user) %>
+          <p>
+            <%= link_to review_favorites_path(@review), method: :delete do %>
+              ♥<%= @review.favorites.count %> いいね
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to review_favorites_path(@review), method: :post do %>
+              ♡<%= @review.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
+        </div>
+
+        <!-- Comments Form -->
+        <div class="card my-4">
+          <h5 class="card-header"> Comment:</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <div class="new-comment">
+                <%= form_with(model:[@review, @review_comment], local: true) do |f| %>
+                  <%= f.text_area :comment, rows:'5',placeholder: "comment", class: "form-control" %>
+                  <%= f.submit "Comment!", class: "btn btn-primary mt-4" %>
+                <% end %>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+        <div class="media mb-5">
+          <% @review.review_comments.each do |review_comment| %>
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+              <h5 class="mt-0"><%= review.review_comments.user.user_name %></h5>
+              <p><%= review.review_comments%></p>
+              <div class="edit">
+              <% if @review.review_comments.user == current_user %>
+                <%= link_to "Edit", edit_review_path(@review), class: "btn btn-primary" %>
+                <%= link_to "Delete", review_path(@review), method: :delete, class: "btn btn-denger" %>
+              <% end %>
+            <% end %>
+            </div>
+            </div>
+        </div>
+
+
+      </div>
+      <!-- /.row -->
+    </div>
+  </div>
