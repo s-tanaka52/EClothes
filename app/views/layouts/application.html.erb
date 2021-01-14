@@ -10,11 +10,22 @@
   </head>
 
   <body>
-    <!--font-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/42591157a3.js" crossorigin="anonymous"></script>
+    <head>
+      <!--font-->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
+      <script src="https://kit.fontawesome.com/42591157a3.js" crossorigin="anonymous"></script>
 
+      <script>
+        $(function(){
+          $('#star1').raty();
+        });
+      </script>
+    </head>
+
+    <script type="text/javascript">
+      $('#div').raty();
+    </script>
     <header>
       <%= render'layouts/header' %>
     </header>

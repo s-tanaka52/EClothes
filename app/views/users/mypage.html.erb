@@ -1,76 +1,70 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xl-8">
-       <h2 class="title">My Page</h2>
-        <div class="user-box">
-            <div class="user-info">
-              <div class="user-image">
-                <!--%= attachment_image_tag @user, :profile_image, fallback: "noimage.jpeg", size:"150×150" %-->
-              </div>
-              <div class="user-info">
-                <% if @user == current_user %>
-                  <p><%= link_to "Edit", edit_user_path(current_user.id), class: "btn btn-primary"%></p>
-                <% end %>
-                <p>Name:<%= @user.user_name %></p>
-                <p>Message:<%= @user.introduction %></p>
-              </div>
+
+    <!-- Heading Row -->
+    <div class="row align-items-center mb-5 my-5">
+      <div class="col-lg-3">
+        <h2 class="title">My Page</h2>
+        <%= attachment_image_tag @user, :image, fallback: "noimage.png" %>
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-4">
+        <h4 class="font-weight-light"><%= @user.user_name %></h4>
+        <div class="User-info">
             </div>
-        </div>
-        <div class="user-reviews-box">
-          <h2 class="title">My Reviews</h2>
-          <div class="col-xl-10 reviews-box mr-10 text-center card-deck" style="width:60rem">
-               <% @reviews.each do |review| %>
-               <section class="card col-xl-5">
-                <div class="img">
-                    <%= link_to reviews_path(review.id), class: "width" do %>
-                      <%= attachment_image_tag review, :image, :fill, 100, 100 %>
-                    <% end %>
-                </div>
-                <div class="card-content">
-                 <h6 class="card-title">Title: <%= review.title %></h6>
-                 <p class="card-text">Review: <%= review.body%></p>
-                </div>
-                <div class="comments">
-                  <p>Comment：<%= review.review_comments.count %></p>
-                  <p>Favorite: </p>
-                </div>
-                <div class="card-link">
-                 <div class="a"><%= link_to "View Moew", review_path(review) %></div>
-                 <div class="a"><%= link_to "#{review.user.user_name}", user_path(review.user), class: "card-link"%></div>
-                </div>
-                </section>
-                <% end %>
-               </div>
-        </div>
-        <div class="user-reviews-box">
-          <h2 class="title">Favorite Reviews</h2>
-          <div class="favoritereviews-box mr-10 text-center">
-            <div class="col-xl-10 reviews-box mr-10 text-center card-group" style="width:60rem">
-               <% @reviews.each do |review| %>
-               <section class="card col-xl-5">
-                <div class="img">
-                    <%= link_to reviews_path(review.id), class: "width" do %>
-                      <%= attachment_image_tag review, :image, :fill, 100, 100 %>
-                    <% end %>
-                </div>
-                <div class="card-content">
-                 <h6 class="card-title">Title: <%= review.title %></h6>
-                 <p class="card-text">Review: <%= review.body %></p>
-                </div>
-                <div class="comments">
-                  <p>Comment：<%= review.review_comments.count %></p>
-                  <p>Favorite: ♥<%= review.favorites.count %></p>
-                </div>
-                <div class="card-link">
-                 <div class="a"><%= link_to "View Moew", review_path(review) %></div>
-                 <div class="a"><%= link_to "#{review.user.user_name}", user_path(review.user), class: "card-link"%></div>
-                </div>
-                </section>
-                <% end %>
-               </div>
+              Follow: <%= @user.followings.count %><br />
+              Follower: <%= @user.followers.count %><br />
+              Like: <%= @user.favorites.count %><br />
             </div>
+        <div class="SNS">
+
+        </div>
+        <div class="col-lg-2 edit">
+          <% if @user == current_user %>
+            <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %>
+            <%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5" %>
+          <% end %>
+        </div>
+         <!-- /.col-lg- -->
+      </div>
+      <!-- /.row -->
+
+    <!-- Call to Action Well -->
+    <div class="card bg-light my-5 py-4 text-center">
+      <div class="card-body">
+        <p class=" m-0"><%= @user.introduction %></p>
+      </div>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row align-items-center mb-5 my-5">
+      <div class="col-lg-5">
+        <h2 class="title">My Reviews</h2>
+        <div class="card h-100">
+          <div class="card mb-4">
+            <% @reviews.each do |review| %>
+            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+            <%= attachment_image_tag @review, :image, :fill, 300, 300 %>
+            <div class="card-body">
+            <h3 class="card-title">Title: <%= review.title %></h><br />
+            <small class="card-text"><%= review.body%></small><br />
+            <%= link_to "Read More", review_path(review), class: "btn btn-primary mt-5"%>
+            <% if review.user == current_user %>
+                <%= link_to "Edit", edit_review_path(review), class: "btn btn-primary mt-5" %>
+                <%= link_to "Delete", review_path(review), method: :delete, class: "btn btn-danger mt-5" %>
+            <% end %>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on <%= review.created_at %>
+            <a href="/">EClothes</a>
+          </div>
+          <% end %>
         </div>
 
+        </div>
+      </div>
+
     </div>
+    <!-- /.row -->
+
   </div>
-</div>
+  <!-- /.container -->

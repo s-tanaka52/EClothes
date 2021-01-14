@@ -2,12 +2,12 @@
 
     <!-- Heading Row -->
     <div class="row align-items-center mb-5 my-5">
-      <div class="col-lg-7">
+      <div class="col-lg-3">
         <h2 class="title"><%= @user.user_name%>'s Profile</h2>
-        <!--%= attachment_image_tag @user, :profile_image, fallback: "noimage.jpeg", size:"150×150"% -->
+        <%= attachment_image_tag @user, :image, fallback: "noimage.png" %>
       </div>
       <!-- /.col-lg-8 -->
-      <div class="col-lg-5">
+      <div class="col-lg-1">
         <h4 class="font-weight-light"><%= @user.user_name %></h4>
         <div class="User-info">
           <% if @user != current_user %>
@@ -18,14 +18,16 @@
             <% end %>
           <% end %>
             </div>
-              Follow: <%= @user.followings.count %><br />
-              Follower: <%= @user.followers.count %><br />
+            <p><a id="modal-open" class="button-link"></a></p>
+              Follow:<p><a id="modal-open" class="button-link"><%= link_to "#{@user.followings.count}", user_followings_path(@user) %></a></p>
+              Follower: <%= link_to "#{@user.followers.count}", user_followers_path(@user) %><br />
               Like: <%= @user.favorites.count %><br />
             </div>
+        <br />
         <div class="SNS">
 
         </div>
-        <div class="edit">
+        <div class="col-lg-2 edit">
           <% if @user == current_user %>
             <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %>
             <%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5" %>
@@ -33,7 +35,6 @@
         </div>
       </div>
       <!-- /.col-md-4 -->
-    </div>
     <!-- /.row -->
 
     <!-- Call to Action Well -->
@@ -46,6 +47,7 @@
     <!-- Content Row -->
     <div class="row">
       <div class="col-md-4 mb-5">
+        <h2 class="title"><%= @user.user_name %>'s Reviews</h2>
         <div class="card h-100">
           <div class="card mb-4">
             <% @reviews.each do |review| %>

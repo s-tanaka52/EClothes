@@ -72,3 +72,6 @@ group :production do
 end
 
 gem 'ancestry'
+gem 'acts-as-taggable-on', '~> 6.0'
+gem 'ransack'
+gem 'kaminari'

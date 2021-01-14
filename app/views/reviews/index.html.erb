@@ -6,9 +6,9 @@
               <div class="col-xl-10 reviews-box mr-10 text-center card-group" style="width:60rem">
                <% @reviews.each do |review| %>
                <section class="card col-xl-5">
-                <div class="img">
+                <div id="index-img">
                     <%= link_to reviews_path(review.id), class: "width" do %>
-                      <%= attachment_image_tag review, :image, :fill, 100, 100 %>
+                      <%= attachment_image_tag review, :image, :fill, 100, 100, fallback: "noimage.png" %>
                     <% end %>
                 </div>
                 <div class="card-content">
