@@ -1,45 +1,40 @@
 <div class="container">
-  <div class="row">
-<div class="admins-item-body">
-
-  <h2 class="col-xl-10 title"><%= @user.user_name %>'s info</h2>
-
-    <%= form_with model:@user, url: user_path(@user.id), method: :patch, local:true do |f| %>
-
-      <div class="col-lg-4">
-          <%= attachment_image_tag @user, :image, :fill, 60, 60 %>
-            <label for="inputImage">ProfileImage</label>
-          <%= f.attachment_field :image, placeholder: "Profile Image" %>
+    <!-- Heading Row -->
+    <div class="row align-items-center mb-5 my-5">
+      <div class="col-lg-3">
+        <h2 class="title">Edit Profile</h2>
       </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-12 text-center mt-5">
+        <div class="User-info">
+          <div class="col-lg-12 text-center">
+            <%= form_with model:@user, url: users_my_page_path(@user), method: :patch, local:true do |f| %>
+            <table class="table">
+              <tr class="mt-3">
+                <th><%= f.label "Image" %></th>
+                <td class="pl-5"><%= f.attachment_field :image %></td>
+              </tr>
+              <tr class="mt-5">
+                 <th class=""><%= f.label "name" %></th>
+                <td class=""><%= f.text_field :name, size: 40 %></td>
+              </tr>
+              <tr class="mt-5">
+                <th class=""><%= f.label "User Name" %></th>
+                <td class=""><%= f.text_field :user_name, size: 40  %></td>
+              </tr>
+              <tr class="mt-5">
+                <th class=""><%= f.label "Message" %></th>
+                <td class=""><%= f.text_area :introduction, size: "40×15" %>
+              </tr>
+            </table>
+          </div>
 
-      <div class="col-lg-7">
-        <table class="admins_item_show_table">
-          <tr>
-            <th class="admin-new-item-name"><%= f.label "name" %></th>
-            <td class="admin-new-item-explanation"><%= f.text_field :name, size: 40 %></td>
-          </tr>
-          <tr>
-            <th class="admin-new-item-name"><%= f.label "User Name" %></th>
-            <td class="admin-new-item-explanation"><%= f.text_field :user_name, size: 40  %></td>
-          </tr>
-          <tr>
-            <th class="admin-new-item-name"><%= f.label "Message" %></th>
-            <td class="admin-new-item-explanation"><%= f.text_area :introduction, size: "40×15" %>
-          </tr>
-        </table>
-      </div>
-
-      <div class="col-lg-1 admins-item-edit">
-       <%= f.submit "UPDATE", class: "btn btn-1 pull-right admins-item-edit-btn" %>
+          <div class="col-lg-12 text-center mt-5">
+           <%= f.submit "UPDATE", class: "btn btn-success pull-right admins-item-edit-btn mr-5" %>
+           <%= link_to "Withdrawal", users_unsubscribe_path(@user), class: "btn btn-danger ml-5" %>
+          </div>
+        <% end %>
       </div>
     </div>
-    <% end %>
-    <div class="delete-user">
-      <%= link_to "Withdrawal", users_unsubscribe_path(@user), class: "btn btn-denger" %>
-    </div>
-
   </div>
 </div>
-</div>
-</div>
-

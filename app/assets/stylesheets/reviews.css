@@ -1,0 +1,174 @@
+/*tags style*/
+.btn--orange,
+a.btn--orange {
+  color: #fff;
+  background-color: #eb6100; }
+
+.btn--orange:hover,
+a.btn--orange:hover {
+  color: #fff;
+  background: #f56500; }
+
+.reviews-box {
+  padding-top: 15px; }
+
+.new-review-table {
+  text-align: center; }
+
+.card-footer {
+  height: 30px; }
+
+h1 {
+  font-size: 2.2em; }
+
+.wrapper {
+  text-align: left;
+  width: 285px;
+  height: 400px;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0;
+  transform: scale(0.95);
+  transition: box-shadow 0.5s, transform 0.5s;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3); }
+  .wrapper:hover {
+    transform: scale(1);
+    box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2); }
+  .wrapper .card-container {
+    width: 100%;
+    height: 100%; }
+    .wrapper .card-container .top {
+      height: 80%;
+      width: 100%; }
+    .wrapper .card-container .bottom {
+      width: 215%;
+      height: 20%;
+      transition: transform 0.5s; }
+      .wrapper .card-container .bottom.clicked {
+        transform: translateX(-50%); }
+      .wrapper .card-container .bottom h1 {
+        margin: 0;
+        padding: 0; }
+      .wrapper .card-container .bottom p {
+        margin: 0;
+        padding: 0; }
+      .wrapper .card-container .bottom .left {
+        height: 100%;
+        width: 50%;
+        background: #f4f4f4;
+        position: relative;
+        float: left; }
+        .wrapper .card-container .bottom .left .details {
+          padding: 20px;
+          float: left;
+          width: calc(70% - 40px); }
+        .wrapper .card-container .bottom .left .buy {
+          float: right;
+          width: calc(30% - 2px);
+          height: 100%;
+          background: #f1f1f1;
+          transition: background 0.5s;
+          border-left: solid thin rgba(0, 0, 0, 0.1); }
+          .wrapper .card-container .bottom .left .buy i {
+            font-size: 30px;
+            padding: 25px 25px;
+            color: #254053;
+            transition: transform 0.5s; }
+          .wrapper .card-container .bottom .left .buy:hover {
+            background: #A6CDDE; }
+          .wrapper .card-container .bottom .left .buy:hover i {
+            transform: translateY(5px);
+            color: #00394B; }
+
+      .wrapper .card-container .bottom .right {
+        width: 50%;
+        background: #A6CDDE;
+        color: white;
+        float: right;
+        height: 200%;
+        overflow: hidden; }
+        .wrapper .card-container .bottom .right .details {
+          padding: 20px;
+          float: right;
+          width: calc(70% - 40px); }
+        .wrapper .card-container .bottom .right .done {
+          width: calc(30% - 2px);
+          float: left;
+          transition: transform 0.5s;
+          border-right: solid thin rgba(255, 255, 255, 0.3);
+          height: 50%; }
+          .wrapper .card-container .bottom .right .done i {
+            font-size: 30px;
+            padding: 30px;
+            color: white; }
+        .wrapper .card-container .bottom .right .remove {
+          width: calc(30% - 1px);
+          clear: both;
+          border-right: solid thin rgba(255, 255, 255, 0.3);
+          height: 50%;
+          background: #BC3B59;
+          transition: transform 0.5s, background 0.5s; }
+          .wrapper .card-container .bottom .right .remove:hover {
+            background: #9B2847; }
+          .wrapper .card-container .bottom .right .remove:hover i {
+            transform: translateY(5px); }
+          .wrapper .card-container .bottom .right .remove i {
+            transition: transform 0.5s;
+            font-size: 30px;
+            padding: 30px;
+            color: white; }
+        .wrapper .card-container .bottom .right:hover .remove, .wrapper .card-container .bottom .right:hover .done {
+          transform: translateY(-100%); }
+
+  .wrapper .inside {
+    z-index: 9;
+    background: #8fbabf;
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    top: -70px;
+    right: -70px;
+    border-radius: 0px 0px 200px 200px;
+    transition: all 0.5s, border-radius 2s, top 1s;
+    overflow: hidden; }
+    .wrapper .inside .icon {
+      position: absolute;
+      right: 85px;
+      top: 85px;
+      color: white;
+      opacity: 1; }
+    .wrapper .inside:hover {
+      width: 100%;
+      right: 0;
+      top: 0;
+      border-radius: 0;
+      height: 80%; }
+      .wrapper .inside:hover .icon {
+        opacity: 0;
+        right: 15px;
+        top: 15px; }
+      .wrapper .inside:hover .contents {
+        opacity: 1;
+        transform: scale(1);
+        transform: translateY(0); }
+    .wrapper .inside .contents {
+      padding: 5%;
+      opacity: 0;
+      transform: scale(0.5);
+      transform: translateY(-200%);
+      transition: opacity 0.2s, transform 0.8s; }
+      .wrapper .inside .contents table {
+        margin-top: 50px;
+        width: 100%; }
+      .wrapper .inside .contents h1, .wrapper .inside .contents p, .wrapper .inside .contents table {
+        color: white; }
+      .wrapper .inside .contents p {
+        font-size: 13px; }
+
+/*# sourceMappingURL=reviews.css.map */
+
+.contents a {
+  font-size: 10px;
+}

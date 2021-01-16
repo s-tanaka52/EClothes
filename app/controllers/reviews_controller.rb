@@ -17,11 +17,12 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @review_comment = ReviewComment.new
+    @review_comments = ReviewComment.all
     @tags = @review.tag_counts_on(:tags)
   end
 
   def new
-    @review = Review.new(review_params)
+    @review = Review.new(params[:id])
     @review.user_id = current_user.id
     @review.tag_list.add('awesome')     # タグを追加
     @review.tag_list.remove('awesome')  # タグを削除
@@ -32,14 +33,14 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
-    if @review.save!
+    if @review.save
       ReviewCategory.maltilevel_category_create(
       @review,
       params[:parent_id],
       params[:children_id],
       params[:grandchildren_id]
     )
-      redirect_to review_path(@review.user_id)
+      redirect_to review_path(@review.review_id)
     else
       @category_parent_array = Category.category_parent_array_create
       render :new
@@ -73,9 +74,17 @@ class ReviewsController < ApplicationController
     @category_grandchildren = Category.find(params[:children_id]).children
   end
 
+  def tag_show
+    @tags = Review.tag_counts_on(:tags).order('count DESC')
+      if @tag = params[:tag]
+         @reviews = Review.tagged_with(params[:tag])
+      end
+  end
+
+
   private
   def review_params
-    params.permit(:item_name,:brand_name, :title, :body, :image, :user_id, :tag_list, { category_ids: [] })
+    params.require(:review).permit(:item_name, :brand_name, :title, :body, :image, :user_id, :tag_list, { category_ids: [] })
   end
 
 end

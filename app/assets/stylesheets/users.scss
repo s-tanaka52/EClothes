@@ -1,3 +1,150 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$yellow: #F2BC57;
+
+
+
+.center {
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  height: 299px;
+  width: 320px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.3);
+}
+
+.profile {
+  float: left;
+  width: 200px;
+  height: 320px;
+  text-align: center;
+
+  .image {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    margin: 38px auto 0 auto;
+
+    .circle-1 {
+      position: absolute;
+      box-sizing: border-box;
+      width: 76px;
+      height: 76px;
+      top: -3px;
+      left: -3px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: $yellow $yellow $yellow transparent;
+      border-radius: 50%;
+      transition: all 1.5s ease-in-out;
+    }
+
+    .circle-2 {
+      @extend .circle-1;
+      width: 82px;
+      height: 82px;
+      top: -6px;
+      left: -6px;
+      border-color: $yellow transparent $yellow $yellow;
+    }
+
+    img {
+      display: block;
+      border-radius: 50%;
+      background: #F5E8DF;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .circle-1 {
+        transform: rotate(360deg);
+      }
+
+      .circle-2 {
+        transform: rotate(-360deg);
+      }
+
+    }
+
+  }
+
+  .name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 20px;
+  }
+
+  .job {
+    font-size: 11px;
+    line-height: 15px;
+  }
+
+  .actions {
+    margin-top: 33px;
+
+    .btn {
+      display: block;
+      width: 120px;
+      height: 30px;
+      margin: 0 auto 10px auto;
+      background: none;
+      border: 1px solid $yellow;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      box-sizing: border-box;
+      transition: all .3s ease-in-out;
+      color: $yellow;
+
+      &:hover {
+        background: $yellow;
+        color: #fff;
+      }
+    }
+  }
+
+}
+
+.stats {
+  float: left;
+
+  .box {
+    box-sizing: border-box;
+    width: 120px;
+    height: 99px;
+    background: #F5E8DF;
+    text-align: center;
+    padding-top: 28px;
+    transition: all .4s ease-in-out;
+
+    &:hover {
+      background: #E1CFC2;
+      cursor: pointer;
+    }
+
+    &:nth-child(2) {
+      margin: 1px 0;
+    }
+
+  }
+
+  span {
+    display: block;
+  }
+
+  .value {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .parameter {
+    font-size: 11px;
+  }
+
+}

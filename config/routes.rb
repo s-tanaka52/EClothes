@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root to: 'homes#about'
+  root to: 'homes#enter'
   get 'homes/top' => 'homes#top'
-  get 'homes/enter' => 'homes#enter'
+  get 'homes/about' => 'homes#about'
 
   get 'users/my_page' => 'users#mypage'
   get 'users/unsubscribe' => 'users#unsubscribe'

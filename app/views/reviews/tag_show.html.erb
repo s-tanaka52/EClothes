@@ -1,0 +1,12 @@
+<div class='container index-container'>
+  <div class="row">
+    <div class="col-xl-10">
+        <div class="reviews-box">
+            <h2 class="title"><%= @tags.name %>'s Reviews</h2>
+
+              <%= render 'layouts/review-index', reviews: @reviews %>
+        </div>
+    </div>
+  </div>
+</div>
+

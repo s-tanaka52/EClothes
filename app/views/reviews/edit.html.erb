@@ -1,21 +1,24 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h2 class="col-xl-12">Review Edit</h2>
-        <div class="edit-box">
-            <div class="form">
-              <%= form_with model:@review, local:true do |f| %>
-            <table class="new-review-table">
+    <!-- Heading Row -->
+    <div class="row align-items-center mb-5 my-5">
+      <div class="col-lg-3">
+        <h2 class="title">Edit Review</h2>
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-12 text-center mt-5">
+        <div class="User-info">
+          <div class="col-lg-12 text-center">
+            <%= form_with model:@review, url: review_path(@review), method: :patch, local:true do |f| %>
+            <table class="table">
               <tr class="mt-3">
                 <th><%= f.label "Image" %></th>
                 <td class="pl-5"><%= f.attachment_field :image %></td>
               </tr>
-              <br />
-              <tr class="mt-3">
-                <th><%= f.label "Item Name" %></th>
+              <tr class="mt-5">
+                 <th><%= f.label "Item Name" %></th>
                 <td class="pl-5"><%= f.text_field :item_name, size: 50 %></td>
               </tr>
-              <tr class="mt-3">
+              <tr class="mt-5">
                 <th><%= f.label "Brand Name" %></th>
                 <td class="pl-5"><%= f.text_field :brand_name, size: 50 %></td>
               </tr>
@@ -23,19 +26,16 @@
                 <th><%= f.label "Title" %></th>
                 <td class="pl-5"><%= f.text_field :title, size: 50 %></td>
               </tr>
-              <br />
-              <tr class="mt-3">
+              <tr class="mt-5">
                 <th><%= f.label "Review"%></th>
                 <td class="pl-5"><%= f.text_area :body, size: "50×20" %></td>
               </tr>
-              <!-- rate -->
               <div class="rate">
               <tr class="mt-3" id="star">
                 <th><%= f.label :rate,'Star Rate' %></th>
-                <td class=""><%= f.hidden_field :rate, id: :review_star %></td>
-              </tr>
-              <script>
-                $('#star').raty({
+                <td class=""><%= f.hidden_field :rate, id: :review_star %>
+               <script>
+                 $('#star').raty({
                   size     : 36,
                   starOff:  '<%= asset_path('star-off.png') %>',
                   starOn : '<%= asset_path('star-on.png') %>',
@@ -44,28 +44,27 @@
                   half: true,
                 });
                 </script>
-                </div>
-                <tr class="form-group">
-                  <th><%= f.label :review, :tag_list %></th>
-                  <td class="pl-5"><%= f.text_field :tag_list, value: @review.tag_list.join(','), class: "form-control" %></td>
+                </td>
                 </tr>
-                <!--div class="append_category">
-                <div class="category">
-                  <tr class="mt-3">
-                  <th><!%= f.label "Category" %></th>
-                    <br /><td class="pl-5"><!%= select_tag 'parent_id', options_for_select(@category_parent_array), id: 'parent-category', class: 'form-control' %></td>
-                  </tr>
                 </div>
-              </div-->
+              <tr class="mt-5">
+                <th><%= f.label :review, :tag_list %></th>
+                <td class="pl-5"><%= f.text_field :tag_list, value: @review.tag_list.join(','), size: 50 %></td>
+              </tr>
+              <div class="category">
+              <tr class="mt-3">
+                <th><!%= f.label "Category" %></th>
+                <br /><td class="pl-5"><!%= select_tag 'parent_id', options_for_select(@category_parent_array), id: 'parent-category', class: 'form-control' %></td>
+                </tr>
+              </div>
             </table>
           </div>
 
-          <div class="text-center">
-            <%= f.submit "Edit", class: "btn btn-success"%>
+          <div class="col-lg-12 text-center mt-5">
+            <%= f.submit "Submit", class: "btn btn-success"%>
           </div>
-          <% end %>
-            </div>
-        </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

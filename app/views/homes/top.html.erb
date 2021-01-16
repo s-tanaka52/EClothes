@@ -13,13 +13,16 @@
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <%= image_tag "1.png", alt: "First slide", class: "d-block img-fluid" %>
+              <%= video_tag "1.mp4", class: "landing_video d-block img-fluid", loop: true, autoplay: true, muted: true %>
+              <!--%= image_tag "1.png", alt: "First slide", class: "d-block img-fluid" %-->
             </div>
             <div class="carousel-item">
-              <%= image_tag "2.png", alt: "Second slide", class: "d-block img-fluid" %>
+              <%= video_tag "2.mp4", class: "landing_video d-block img-fluid", loop: true, autoplay: true, muted: true %>
+              <!%= image_tag "2.png", alt: "Second slide", class: "d-block img-fluid" %>
             </div>
             <div class="carousel-item">
-              <%= image_tag "3.png", alt: "Third slide", class: "d-block img-fluid" %>
+              <%= video_tag "3.mp4", class: "landing_video d-block img-fluid", loop: true, autoplay: true, muted: true %>
+              <!--%= image_tag "3.png", alt: "Third slide", class: "d-block img-fluid" %-->
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -31,88 +34,35 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-
-        <div class="row">
-        <h2 class="title">New Reviews</h2>
-          <% @new_reviews.each do |review| %>
-           <div class="col-xl-4">
-            <div class="card-container col-lg-12 mb-4">
-              <div class="card-box h-100">
-                  <div class="card-img-top text-center">
-                      <%= link_to reviews_path(review.id) do %>
-                        <%= attachment_image_tag review, :image, :fill, 100, 100 %>
-                      <% end %>
-                  </div>
-                  <div class="card-body">
-                   <section class="card col-xl-12">
-                    <div class="card-content">
-                     <h6 class="card-title mt-4">Title: <%= review.title %></h6>
-                     <p class="card-text">Review: <%= review.body%></p>
-                    </div>
-                    <div class="comments mt-4">
-                      <p>Comment：<%= review.review_comments.count %></p>
-                      <p>Favorite: ♥<%= review.favorites.count %></p>
-                    </div>
-                    <div class="card-link text-center mb-4">
-                     <div class="a"><%= link_to "View Moew", review_path(review) %></div>
-                     <div class="a"><%= link_to "User:#{review.user.user_name}", user_path(review.user), class: "card-link"%></div>
-                    </div>
-                    </section>
-                  <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-         <% end %>
-
-
       </div>
-      <!-- /.row -->
-      <div class="row">
-        <h2 class="title">New Reviews</h2>
-          <% @all_ranks.each do |review| %>
-           <div class="col-xl-3">
-            <div class="card-container col-lg-12 mb-4">
-              <div class="card-box h-100">
-                  <div class="card-img-top text-center">
-                      <%= link_to reviews_path(review.id) do %>
-                        <%= attachment_image_tag review, :image, :fill, 100, 100 %>
-                      <% end %>
-                  </div>
-                  <div class="card-body">
-                   <section class="card col-xl-12">
-                    <div class="card-content">
-                     <h6 class="card-title mt-4">Title: <%= review.title %></h6>
-                     <p class="card-text">Review: <%= review.body%></p>
-                    </div>
-                    <div class="comments mt-4">
-                      <p>Comment：<%= review.review_comments.count %></p>
-                      <p>Favorite: ♥<%= review.favorites.count %></p>
-                    </div>
-                    <div class="card-link text-center mb-4">
-                     <div class="a"><%= link_to "View Moew", review_path(review) %></div>
-                     <div class="a"><%= link_to "User:#{review.user.user_name}", user_path(review.user), class: "card-link"%></div>
-                    </div>
-                    </section>
-                  <div class="card-footer">
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-         <% end %>
-
-
-      </div>
-      <!-- /.col-lg-9 -->
-
     </div>
-    <!-- /.row -->
 
-  </div>
-  <!-- /.container -->
+    <div class="row">
+      <div class="col-xl-12 text-center">
+        <h2 class="title">New Reviews</h2>
+      </div>
+    </div>
+
+    <%= render 'layouts/review-index', reviews: @new_reviews %>
+
+    <div class="col-xl-12 text-center mt-5 mb-5">
+      <%= link_to "View More >", reviews_new_reviews_path %>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-12 text-center">
+        <h2 class="title">Hot Reviews</h2>
+      </div>
+    </div>
+
+    <%= render 'layouts/review-index', reviews: @all_ranks %>
+
+    <div class="col-xl-12 text-center mt-5 mb-5">
+      <%= link_to "View More >", reviews_hot_reviews_path %>
+    </div>
+
+</div>
+<!--/container-->
+
 
 

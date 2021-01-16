@@ -3,11 +3,11 @@
     <!-- Heading Row -->
     <div class="row align-items-center mb-5 my-5">
       <div class="col-lg-3">
-        <h2 class="title"><%= @user.user_name%>'s Profile</h2>
-        <%= attachment_image_tag @user, :image, fallback: "noimage.png" %>
+        <h2 class="title mb-5"><%= @user.user_name%>'s Profile</h2>
+        <%= attachment_image_tag @user, :image, fallback: "noimage-human.png", class: "profile-img" %>
       </div>
       <!-- /.col-lg-8 -->
-      <div class="col-lg-1">
+      <div class="col-lg-4">
         <h4 class="font-weight-light"><%= @user.user_name %></h4>
         <div class="User-info">
           <% if @user != current_user %>
@@ -19,7 +19,7 @@
           <% end %>
             </div>
             <p><a id="modal-open" class="button-link"></a></p>
-              Follow:<p><a id="modal-open" class="button-link"><%= link_to "#{@user.followings.count}", user_followings_path(@user) %></a></p>
+              Follow:<%= link_to "#{@user.followings.count}", user_followings_path(@user) %><br />
               Follower: <%= link_to "#{@user.followers.count}", user_followers_path(@user) %><br />
               Like: <%= @user.favorites.count %><br />
             </div>
@@ -27,10 +27,10 @@
         <div class="SNS">
 
         </div>
-        <div class="col-lg-2 edit">
+        <div class="edit">
           <% if @user == current_user %>
-            <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %>
-            <%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5" %>
+            <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5 text-center" %>
+            <%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5 text-center" %>
           <% end %>
         </div>
       </div>
@@ -45,35 +45,15 @@
     </div>
 
     <!-- Content Row -->
-    <div class="row">
-      <div class="col-md-4 mb-5">
+    <div class="row align-items-center my-5">
+      <div class="col-lg-5">
         <h2 class="title"><%= @user.user_name %>'s Reviews</h2>
-        <div class="card h-100">
-          <div class="card mb-4">
-            <% @reviews.each do |review| %>
-            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-            <%= attachment_image_tag @review, :image, :fill, 300, 300 %>
-            <div class="card-body">
-            <h3 class="card-title">Title: <%= review.title %></h><br />
-            <small class="card-text"><%= review.body%></small><br />
-            <%= link_to "Read More", review_path(review), class: "btn btn-primary mt-5"%>
-            <% if review.user == current_user %>
-                <%= link_to "Edit", edit_review_path(review), class: "btn btn-primary mt-5" %>
-                <%= link_to "Delete", review_path(review), method: :delete, class: "btn btn-danger mt-5" %>
-            <% end %>
-          </div>
-          <div class="card-footer text-muted">
-            Posted on <%= review.created_at %>
-            <a href="/">EClothes</a>
-          </div>
-          <% end %>
-        </div>
-
-        </div>
       </div>
-
     </div>
-    <!-- /.row -->
 
-  </div>
-  <!-- /.container -->
+    <%= render 'layouts/review-index', reviews: @reviews %>
+
+    <div class="mb-5"></div>
+
+</div>
+<!-- /.container -->

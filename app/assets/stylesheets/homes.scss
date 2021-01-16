@@ -12,3 +12,27 @@
   margin:0;
   padding:0;
 }
+
+.call a {
+  color: white;
+}
+
+.call a:hover {
+  color: #F2BC57;
+}
+
+.video-container{
+  position: fixed;
+  top: 30;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -4;
+  margin-top: 30px;
+}
+
+.slidercontent{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}

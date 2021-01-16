@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <head>
+    <head class="full">
       <!--font-->
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
@@ -29,13 +29,17 @@
     <header>
       <%= render'layouts/header' %>
     </header>
+
+    <div id="main">
+
     <%= yield %>
 
+    </div>
+
   <!-- Footer -->
-    <footer class="py-5 bg-white">
-     <div class="container">
-      <p class="m-0 text-center">Copyright &copy; EClothes 2021</p>
-     </div>
+     <footer id="footer">
+      Copyright © EClothes </a>. All Rights Reserved.
+    </footer>
     <!-- /.container -->
     </footer>
     <!-- /.footer -->

@@ -1,20 +1,21 @@
-<!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="/">Eclothes</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
+<div class="hold">
+  <div class="header">
+    <div class="header-container">
+      <div id="logo">
+        <%= image_tag("logo2.png") %>
+      </div>
+      <ul class="nav">
+        <% if user_signed_in? %>
           <li class="nav-item">
             <a class="nav-link" href="/reviews/new"><i class="far fa-plus-square"></i></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/">Home
+            <a class="nav-link" href="/homes/top">Home
               <span class="sr-only">(current)</span>
             </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/homes/about">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/users/my_page">My Page</a>
@@ -53,11 +54,28 @@
           </div>
 
           <nav class="globalMenuSp">
+            <h3 class="Search-tite text-center">Search ?</h3>
+            <div id="review-search">
             <ul>
-
+            <%= search_form_for @search do |f| %>
+            <div class="select-box mt-3 mx-auto">
+              <%= f.label :title_or_body_cont, "Key Word" %>
+              <%= f.search_field :title_or_body_cont, class: "form-control text-center" %>
+            </div>
+            <div class="select-box mt-3 mx-auto">
+              <%= f.label :brand_name_cont, "Brand Name" %>
+              <%= f.search_field :brand_name_cont, class: "form-control text-center" %>
+            </div>
+            <div class="select-box mt-3 mx-auto">
+              <%= f.label :item_name_cont, "Item name" %>
+              <%= f.search_field :item_name_cont, class: "form-control text-center" %>
+            </div>
+            <div class="actions mt-3 mb-3 mx-auto"><%= f.submit "Search", class: "btn btn-success" %></div>
+            <% end %>
             </ul>
+           </div>
           </nav>
-        </ul>
-      </div>
+      </ul>
     </div>
-  </nav>
+  </div>
+</div>
