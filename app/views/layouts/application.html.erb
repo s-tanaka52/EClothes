@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application' %>
     <%= javascript_include_tag 'application' %>
+
   </head>
 
   <body>
@@ -14,6 +15,17 @@
       <!--font-->
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.typekit.net/sfp3arn.css">
+      <script>
+        (function(d) {
+          var config = {
+            kitId: 'nxb7tkd',
+            scriptTimeout: 3000,
+            async: true
+          },
+          h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        })(document);
+      </script>
       <script src="https://kit.fontawesome.com/42591157a3.js" crossorigin="anonymous"></script>
 
       <script>

@@ -1,11 +1,13 @@
 <div class='container index-container mt-5'>
     <div class="row">
       <div class="col-xl-12 text-center">
-        <h2 class="title">Reviews</h2>
+        <h2 class="title mt-5">Reviews</h2>
       </div>
     </div>
 
       <%= render 'layouts/review-index', reviews: @reviews %>
 
+    <div class="paginate mt-5">
+      <%= paginate @reviews %>
     </div>
 </div>

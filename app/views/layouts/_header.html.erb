@@ -1,50 +1,56 @@
-<div class="hold">
-  <div class="header">
-    <div class="header-container">
-      <div id="logo">
-        <%= image_tag("logo2.png") %>
-      </div>
-      <ul class="nav">
+<header class="header-6">
+  <div class="box box-logo">
+    <div class="logo-img text-center">
+      <%= image_tag("logo2.png") %>
+    </div>
+  </div>
+  <div class="sp-nav">
+    <i class="fas fa-bars"></i>
+  </div>
+  <div id="box box-nav">
+    <ul class="inner-nav">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <a class="nav-link" href="/reviews/new"><i class="far fa-plus-square"></i></a>
+            <%= link_to new_review_path, class: "nav-link" do %>
+              <i class="far fa-plus-square"></i>
+            <% end %>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/homes/top">Home
+            <%= link_to "Home", homes_top_path, class: "nav-link" %>
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/homes/about">About</a>
+            <%= link_to "About", homes_about_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/users/my_page">My Page</a>
+            <%= link_to "My Page", users_my_page_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/reviews">Reviews</a>
+            <%= link_to "Reviews", reviews_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/users">Users</a>
+            <%= link_to "Users", users_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/users/sign_out">Log Out</a>
+            <%= link_to "Log Out",destroy_user_session_path(current_user.id), method: :delete, class: "nav-link" %>
           </li>
           <% else %>
           <li class="nav-item active">
-            <a class="nav-link" href="/">Home
+            <%= link_to "Home", homes_top_path, class: "nav-link" %>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">About</a>
+            <%= link_to "About", homes_about_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/reviews">Reviews</a>
+            <%= link_to "Review", reviews_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/users">Users</a>
+            <%= link_to "Users", users_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/users/sign_up">Sign Up</a>
+            <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
           </li>
           <% end %>
           <div class="hamburger">
@@ -54,28 +60,20 @@
           </div>
 
           <nav class="globalMenuSp">
-            <h3 class="Search-tite text-center">Search ?</h3>
+            <h3 class="search-tite text-center mt-5">Search ?</h3>
             <div id="review-search">
             <ul>
-            <%= search_form_for @search do |f| %>
-            <div class="select-box mt-3 mx-auto">
-              <%= f.label :title_or_body_cont, "Key Word" %>
-              <%= f.search_field :title_or_body_cont, class: "form-control text-center" %>
-            </div>
-            <div class="select-box mt-3 mx-auto">
-              <%= f.label :brand_name_cont, "Brand Name" %>
-              <%= f.search_field :brand_name_cont, class: "form-control text-center" %>
-            </div>
-            <div class="select-box mt-3 mx-auto">
-              <%= f.label :item_name_cont, "Item name" %>
-              <%= f.search_field :item_name_cont, class: "form-control text-center" %>
-            </div>
-            <div class="actions mt-3 mb-3 mx-auto"><%= f.submit "Search", class: "btn btn-success" %></div>
-            <% end %>
+             <%= search_form_for @search, url: search_reviews_path do |f| %>
+                <%= f.label "Key Word" , class: "search-field mt-1"%>
+                <br />
+                <%= f.search_field :body_cont ,class: 'search-form form-controll mt-3 mb-5', size: 50 , placeholder: 'ex) 21SS' %>
+                <%= button_tag type:'submit',class:'btn btn-primary' do %>
+                  <i class="fas fa-search"></i>
+                <% end %>
+             <% end %>
             </ul>
            </div>
           </nav>
-      </ul>
-    </div>
+    </ul>
   </div>
-</div>
+</header>

@@ -4,7 +4,7 @@
           <div class="card-container col-lg-12 mb-4 text-left">
             <div class="top">
               <%= link_to review_path(review.id) do %>
-                <%= attachment_image_tag review, :image, :fill, 400, 400 %>
+                <%= attachment_image_tag review, :image, :fill, 400, 400, fallback: "noimage-human.png" %>
               <% end %>
             </div>
             <div class="bottom">
@@ -47,6 +47,12 @@
                 <tr>
                   <th>Brand</th>
                   <td><%= review.brand_name.truncate(20) %></td>
+                </tr>
+                <tr>
+                  <th>Rate</th>
+                  <td>
+                    <i class="fas fa-star"></i><%= review.rate %>/<i class="fas fa-star"></i>5.0
+                  </td>
                 </tr>
                 <tr>
                   <th><i class="fab fa-gratipay"></i></th>

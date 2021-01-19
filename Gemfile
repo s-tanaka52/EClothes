@@ -74,4 +74,5 @@ end
 gem 'ancestry'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'ransack'
-gem 'kaminari'
+gem 'kaminari','~> 1.2.1'
+gem 'jquery-ui-rails'

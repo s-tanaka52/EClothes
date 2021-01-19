@@ -40,7 +40,7 @@
                   starOff:  '<%= asset_path('star-off.png') %>',
                   starOn : '<%= asset_path('star-on.png') %>',
                   starHalf: '<%= asset_path('star-half.png') %>',
-                  scoreName: 'post[rate]',
+                  scoreName: 'review[rate]',
                   half: true,
                 });
                 </script>
@@ -55,7 +55,13 @@
               <tr class="mt-3">
                 <th><!%= f.label "Category" %></th>
                 <br /><td class="pl-5"><!%= select_tag 'parent_id', options_for_select(@category_parent_array), id: 'parent-category', class: 'form-control' %></td>
-                </tr>
+              </tr>
+              <tr class="mt-3">
+                <div class="">
+                  <th><%= f.label "Category" %></th>
+                  <br /><td class="pl-5 category-form"><%= select_tag 'parent_id', options_for_select(@category_parent_array), id: 'parent-category', class: 'form-control' %></td>
+                </div>
+              </tr>
               </div>
             </table>
           </div>

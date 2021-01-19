@@ -1,0 +1,40 @@
+<% users.each do |user| %>
+    <div class="col-xl-4">
+     <div class="frame">
+      <div class="center">
+        <div class="profile">
+         <div class="image">
+            <div class="circle-1"></div>
+            <div class="circle-2"></div>
+            <%= link_to user_path(user.id) do %>
+                <%= attachment_image_tag user, :image, fallback: "noimage-human.png" %>
+              <% end %>
+         </div>
+
+          <div class="name"><%= user.user_name %></div>
+          <div class="introduction"><%= user.introduction %></div>
+
+          <div class="actions">
+            <div class=""><%= link_to "profile", user_path(user.id), class: "btn" %></div>
+            <button class="btn">Message</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="box">
+            <span class="value"><%= user.reviews.count %></span>
+            <span class="parameter">Reviews</span>
+          </div>
+          <div class="box">
+            <span class="value"><%= user.favorites.count %></span>
+            <span class="parameter">Likes</span>
+          </div>
+          <div class="box">
+            <span class="value"><%= user.followers.count %></span>
+            <span class="parameter">Follower</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -6,7 +6,6 @@ $(function() {
 
   function appendChildrenBox(insertHTML) {
     let childrenSelectHtml = '';
-    console.log(childrenSelectHtml)
     childrenSelectHtml = `
       <div id='children-wrapper'>
         <select id='children-category' class='form-control' name='[children_id]'>

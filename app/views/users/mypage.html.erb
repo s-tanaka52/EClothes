@@ -1,27 +1,52 @@
 <div class="container">
     <!-- Heading Row -->
     <div class="row align-items-center mb-5 my-5">
-      <div class="col-lg-3">
-        <h2 class="title">My Page</h2>
+      <div class="col-lg-4 mt-5">
+        <h2 class="title mb-5">My Page</h2>
         <%= attachment_image_tag @user, :image, fallback: "noimage-human.png", class: "profile-img" %>
       </div>
       <!-- /.col-lg-8 -->
-      <div class="col-lg-4">
+      <div class="col-lg-2 mt-5">
         <h4 class="font-weight-light"><%= @user.user_name %></h4>
-        <div class="User-info">
-            </div>
-              Follow: <%= @user.followings.count %><br />
-              Follower: <%= @user.followers.count %><br />
-              Like: <%= @user.favorites.count %><br />
-            </div>
         <div class="SNS">
-
+          <!--Facebook-->
+          <a class="js-facebook-share" target="_blank" rel="nofollow">
+            <i class="fab fa-facebook share-btn"></i>
+          </a>
+          <!--Twitter-->
+          <a class="js-twitter-share ml-3" target="_blank" rel="nofollow">
+            <i class="fab fa-twitter share-btn"></i>
+          </a>
+          <!--line-->
+          <a class="js-line-share ml-3" rel="nofollow">
+            <i class="fab fa-line share-btn"></i>
+          </a>
         </div>
-        <div class="col-lg-2 edit">
-          <% if @user == current_user %>
-            <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %>
-            <%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5" %>
-          <% end %>
+        <div class="User-info mt-3">
+          <table>
+            <tr>
+              <th class="mr-3">Follow:</th>
+              <td><%= link_to "#{@user.followings.count}", user_followings_path(@user) %></td>
+            </tr>
+            <tr>
+              <th class="mr-3">Follower:</th>
+              <td><%= link_to "#{@user.followers.count}", user_followers_path(@user) %></td>
+            </tr>
+            <tr>
+              <th class="mr-3">Likes:</th>
+              <td><%= @user.favorites.count %></td>
+            </tr>
+            <% if @user == current_user %>
+            <tr>
+              <th><%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %></th>
+              <td><%= link_to "退会", users_unsubscribe_path, class: "btn btn-danger mt-5" %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+
+
+
         </div>
          <!-- /.col-lg- -->
       </div>
@@ -34,8 +59,103 @@
       </div>
     </div>
 
-    <%= render 'layouts/review-index', reviews: @reviews %>
+    <div class="row">
+     <div class="col-xl-12 mt-5">
+       <h2 class="title">My Reviews</h2>
+     </div>
 
-    <div class="mb-5"></div>
+     <%= render 'layouts/review-index', reviews: @reviews %>
+
+     <div class="mb-5"></div>
+    </div>
+
+    <div class="row">
+     <div class="col-xl-12 mt-5">
+       <h2 class="title">My Favorite Reviews</h2>
+     </div>
+
+      <div class="row text-left mb-5">
+      <% @favorites.each do |review| %>
+        <% review = Review.find_by(id: review.review_id) %>
+        <% user = User.find_by(id: review.user_id) %>
+        <div class="wrapper text-left mt-5">
+          <div class="card-container col-lg-12 mb-4 text-left">
+            <div class="top">
+              <%= link_to review_path(review.id) do %>
+                <%= attachment_image_tag review, :image, :fill, 400, 400, fallback: "noimage-human.png" %>
+              <% end %>
+            </div>
+            <div class="bottom">
+              <div class="left">
+                <div class="details">
+                  <h6><%= review.title.truncate(15) %></h6>
+                    <p class="contents"><%= link_to "#{review.user.user_name}", user_path(review.user)%></p>
+                </div>
+              <div class="buy">
+                <%= link_to review_path(review) do %>
+                  <i class="fas fa-angle-double-right"></i>
+                <% end %>
+              </div>
+            </div>
+            <div class="right">
+              <div class="done"><i class="fas fa-info-circle"></i></div>
+                <div class="details">
+                  <h4><%= review.title.truncate(15) %></h4>
+                    <p><%= link_to "#{review.user.user_name}", user_path(review.user)%></p>
+                </div>
+                <div class="remove"><i class="fas fa-info-circle"></i></div>
+            </div>
+            </div>
+          </div>
+          <div class="inside">
+            <div class="icon"><i class="fas fa-info-circle"></i></div>
+              <div class="contents">
+                <table>
+                <tr>
+                  <th>Title</th>
+                  <td><%= review.title.truncate(20) %></td>
+                <tr>
+                  <th>Text</th>
+                  <td><%= review.body.truncate(20) %></td>
+                </tr>
+                <tr>
+                  <th>Item</th>
+                  <td><%= review.item_name.truncate(20) %></td>
+                </tr>
+                <tr>
+                  <th>Brand</th>
+                  <td><%= review.brand_name.truncate(20) %></td>
+                </tr>
+                <tr>
+                  <th>Rate</th>
+                  <td>
+                    <i class="fas fa-star"></i><%= review.rate %>/<i class="fas fa-star"></i>5.0
+                  </td>
+                </tr>
+                <tr>
+                  <th><i class="fab fa-gratipay"></i></th>
+                  <td><%= review.favorites.count %></td>
+                </tr>
+                <tr>
+                  <th><i class="far fa-comment-dots"></i></th>
+                  <td><%= review.review_comments.count %></td>
+                </tr>
+                <tr>
+                  <th>user</th>
+                  <td><%= link_to "#{review.user.user_name}", user_path(review.user), class: "card-link"%></td>
+                </tr>
+                </table>
+                <% if review.user == current_user %>
+                  <%= link_to "Edit", edit_review_path(review), class: "btn btn-primary mt-5" %>
+                  <%= link_to "Delete", review_path(review), method: :delete, class: "btn btn-danger mt-5" %>
+                <% end %>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
 </div>
 <!-- /.container -->

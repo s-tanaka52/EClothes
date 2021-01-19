@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  devise_for :users
+  devise_for :users do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
 
   root to: 'homes#enter'
   get 'homes/top' => 'homes#top'
@@ -17,7 +19,6 @@ Rails.application.routes.draw do
 
   get '/reviews/get_category/children', to: 'reviews#get_category_children', defaults: { format: 'json' }
   get '/reviews/get_category/grandchildren', to: 'reviews#get_category_grandchildren', defaults: { format: 'json' }
-  get '/reviews/tags/:id' => 'reviews#tag_show'
   get '/reviews/hot_reviews' => 'reviews#hot_reviews'
   get '/reviews/new_reviews' => 'reviews#new_reviews'
   patch '/reviews/:id' => 'reviews#update'

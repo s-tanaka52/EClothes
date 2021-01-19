@@ -34,92 +34,111 @@
         <!-- Review Content -->
         <p class="lead mb-5"><%= @review.body %></p>
 
+        <div class="category mt-4">
+          <h5>Category</h5>
+          <tr>
+            <th></th>
+          <% @categories.each do |category| %>
+            <td>
+              <%= category.name %>
+            </td>
+          <% end  %>
+          </tr>
+        </div>
+
+        <!--rate-->
+        <div class="rate mt-5 mb-5">
+          <h5>Rate</h5>
+          <i class="fas fa-star"></i><%= @review.rate %>/<i class="fas fa-star"></i>5.0
+        </div>
+
+        <!--Favorite-->
+        <tr id="review_<%= @review.id%>">
+          <td class="favorite-btn">
+            <% if user_signed_in? %>
+              <%= render 'favorites/favorite-btn', review: @review %>
+            <% else %>
+              ̈♥︎<%= @review.favorites.count %>
+            <% end %>
+          </td>
+        </tr>
+
         <!-- Tags index -->
-        <div class="tags">
-          <h4 class="title">Tags</h4>
+        <div class="tags mt-5">
+          <h5>Tags</h5>
           <% if @tags.present? %>
             <% @tags.each do |tag| %>
-              <%= link_to "#{tag.name}", ' /reviews/tags/:id', class: "btn btn--orange btn--radius" %>
+              <%= link_to "#{tag.name}(#{tag.taggings_count})", reviews_path(tag: tag.name), class: "btn btn--radius mt-2" %>
             <% end %>
           <% end %>
         </div>
 
-        <!--div class="category">
-          <tr>
-            <th>Category</th>
-              <td>
-                <!--%= link_to "#{@category_parent.name}","#" %>
-                <!%= link_to "#{@category_child.name}","#" %>
-                <!%= link_to "#{@category_grandchild.name}","#" %>
-              </td>
-          </tr>
-        </div-->
-
-        <!--Favorite-->
-        <div class="favorite mt-5">
-        <% if @review.favorited_by?(current_user) %>
-          <p>
-            <%= link_to review_favorites_path(@review), method: :delete do %>
-              ♥<%= @review.favorites.count %> いいね
-            <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to review_favorites_path(@review), method: :post do %>
-              ♡<%= @review.favorites.count %> いいね
-            <% end %>
-          </p>
-        <% end %>
+        <div class="SNS mt-5 mb-5">
+          <h5>SHARE!</h5>
+          <!--Facebook-->
+          <a class="js-facebook-share" target="_blank" rel="nofollow">
+            <i class="fab fa-facebook share-btn"></i>
+          </a>
+          <!--Twitter-->
+          <a class="js-twitter-share ml-3" target="_blank" rel="nofollow">
+            <i class="fab fa-twitter share-btn"></i>
+          </a>
+          <!--line-->
+          <a class="js-line-share ml-3" rel="nofollow">
+            <i class="fab fa-line share-btn"></i>
+          </a>
         </div>
 
         <!-- Comments Form -->
+        <% if user_signed_in? %>
         <div class="card my-4">
           <h5 class="card-header"> Comment:</h5>
-          <div class="card-body">
-            <form>
+            <div class="card-body">
               <div class="form-group">
                 <div class="new-comment">
-                <%= form_with(model:[@review, @review_comment], local: true) do |f| %>
+                <%= form_with(model: @review_comment, url: "/reviews/#{@review.id}/review_comments", local: true, method: :post) do |f| %>
                   <%= f.text_area :comment, rows:'5',placeholder: "comment", class: "form-control" %>
                   <%= f.submit "Comment!", class: "btn btn-primary mt-4" %>
                 <% end %>
                 </div>
               </div>
-            </form>
           </div>
         </div>
+        <% end %>
 
-        <!-- Single Comment -->
-        <%= @review_comments.each do |review_comment| %>
-          <p><%= image_tag('sample-author1.jpg') %></p>
-          <%= review_comment.user.name %>
-          <%= review_comment.created_at.strftime('%Y/%m/%d') %><%= review_comment.comment %>
+
+        <% @review.review_comments.each do |review_comment| %>
+        <div class="card my-4">
+          <div class="card-header">
+            Comment by_<%= review_comment.user.user_name %>
             <% if review_comment.user == current_user %>
-            <div class="comment-delete">
-              <%= link_to "削除", review_image_review_comment_path(review_comment.review_image, review_comment), method: :delete %>
-            </div>
+                <%= link_to "Delete", review_path(@review.review_comments), method: :delete, class: "btn btn-denger ml-5" %>
             <% end %>
-        <% end %>
-
-        <div class="media mb-5">
-        <% @review_comments.each do |review_comment| %>
+          </div>
+            <div class="card-body">
+              <div class="form-group">
+        <div class="media mb-1">
         <div class="media-body">
-          <h5 class="mt-0"><%= review_comment.comment.user.user_name %></h5>
-          <p><%= review_comment.comment %></p>
-            <p><%= attachment_image_tag(book_comment.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %></p>
-               <%= review_comment.user.name %>
-            <%= review_comment.comment %>
-          <div class="edit">
-            <% if @review.review_comments.user == current_user %>
-                <%= link_to "Edit", edit_review_path(@review), class: "btn btn-primary" %>
-                <%= link_to "Delete", review_path(@review), method: :delete, class: "btn btn-denger" %>
-            <% end %>
+          <div class="row">
+            <div class="col-xl-1">
+              <%= attachment_image_tag(review_comment.user, :image, :fill, 100, 100, fallback: "noimage-human.png", class: "comment-profile-img") %>
+            </div>
+            <div class="col-xl-10">
+              <p><%= review_comment.comment %></p>
+              <p><%= review_comment.user.name %></p>
+            </div>
+          </div>
+                </div>
+              </div>
+            </div>
+
         <% end %>
-        </div>
-        </div>
+         </div>
       </div>
 
       </div>
-      <!-- /.row -->
+      <!-- /.col-xl-10 -->
     </div>
+    <!--/.row-->
   </div>
+  <!--/.container-->

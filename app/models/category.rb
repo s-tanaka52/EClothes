@@ -1,7 +1,7 @@
 class Category < ApplicationRecord
 
   has_ancestry
-  has_many :reviews
+  #has_many :reviews
 
   has_many :review_categories
   has_many :reviews, through: :review_categories

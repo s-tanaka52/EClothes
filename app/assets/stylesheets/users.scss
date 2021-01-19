@@ -4,8 +4,6 @@
 
 $yellow: #F2BC57;
 
-
-
 .center {
   position: absolute;
   top: 50px;
@@ -40,7 +38,6 @@ $yellow: #F2BC57;
       border-width: 1px;
       border-style: solid;
       border-color: $yellow $yellow $yellow transparent;
-      border-radius: 50%;
       transition: all 1.5s ease-in-out;
     }
 
@@ -80,7 +77,7 @@ $yellow: #F2BC57;
     margin-top: 20px;
   }
 
-  .job {
+  .introduction {
     font-size: 11px;
     line-height: 15px;
   }

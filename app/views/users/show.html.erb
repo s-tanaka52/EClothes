@@ -2,14 +2,29 @@
 
     <!-- Heading Row -->
     <div class="row align-items-center mb-5 my-5">
-      <div class="col-lg-3">
-        <h2 class="title mb-5"><%= @user.user_name%>'s Profile</h2>
+      <div class="col-lg-4">
+        <h2 class="title mt-5 mb-5"><%= @user.user_name%>'s Profile</h2>
         <%= attachment_image_tag @user, :image, fallback: "noimage-human.png", class: "profile-img" %>
       </div>
       <!-- /.col-lg-8 -->
-      <div class="col-lg-4">
+      <div class="col-lg-2 mt-5">
         <h4 class="font-weight-light"><%= @user.user_name %></h4>
-        <div class="User-info">
+        <div class="SNS">
+          <!--Facebook-->
+          <a class="js-facebook-share" target="_blank" rel="nofollow">
+            <i class="fab fa-facebook share-btn"></i>
+          </a>
+          <!--Twitter-->
+          <a class="js-twitter-share ml-3" target="_blank" rel="nofollow">
+            <i class="fab fa-twitter share-btn"></i>
+          </a>
+          <!--line-->
+          <a class="js-line-share ml-3" rel="nofollow">
+            <i class="fab fa-line share-btn"></i>
+          </a>
+        </div>
+        <div class="User-info mt-5">
+          <% if user_signed_in? %>
           <% if @user != current_user %>
             <% if current_user.following?(@user) %>
               <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
@@ -17,22 +32,31 @@
               <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %>
             <% end %>
           <% end %>
+          <% end %>
             </div>
             <p><a id="modal-open" class="button-link"></a></p>
-              Follow:<%= link_to "#{@user.followings.count}", user_followings_path(@user) %><br />
-              Follower: <%= link_to "#{@user.followers.count}", user_followers_path(@user) %><br />
-              Like: <%= @user.favorites.count %><br />
+              <table>
+                <tr>
+                  <th class="mr-3">Follow:</th>
+                  <td><%= link_to "#{@user.followings.count}", user_followings_path(@user) %></td>
+                </tr>
+                <tr>
+                  <th class="mr-3">Follower:</th>
+                  <td><%= link_to "#{@user.followers.count}", user_followers_path(@user) %></td>
+                </tr>
+                <tr>
+                  <th class="mr-3">Likes:</th>
+                  <td><%= @user.favorites.count %></td>
+                </tr>
+                <% if @user == current_user %>
+                <tr>
+                  <th><%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %></th>
+                  <td><%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5" %></td>
+                </tr>
+                <% end %>
+              </table>
             </div>
         <br />
-        <div class="SNS">
-
-        </div>
-        <div class="edit">
-          <% if @user == current_user %>
-            <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5 text-center" %>
-            <%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5 text-center" %>
-          <% end %>
-        </div>
       </div>
       <!-- /.col-md-4 -->
     <!-- /.row -->

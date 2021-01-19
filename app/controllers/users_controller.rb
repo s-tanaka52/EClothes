@@ -1,19 +1,20 @@
 class UsersController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:mypage, :following, :followers, :edit, :update]
 
   def mypage
     @user = current_user
-    @reviews = Review.all
+    @reviews = @user.reviews
+    @favorites = Favorite.where(user_id: @user.id)
   end
 
   def index
-    @users = User.all
-    @reviews = Review.all
+    @users = User.page(params[:page]).per(6)
   end
 
   def show
     @user = User.find(params[:id])
     @reviews = Review.joins(:user).where(users: {id: @user.id})
+    @reviews = Review.page(params[:page]).per(4)
   end
 
   def following
@@ -23,7 +24,8 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @user  = User.find(params[:id])
+    @user = User.find(params[:id])
+    @users = User.page(params[:page]).per(6)
     @users = @user.followers
     render 'show_follower'
   end
