@@ -13,8 +13,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @reviews = Review.joins(:user).where(users: {id: @user.id})
     @reviews = Review.page(params[:page]).per(4)
+    @reviews = Review.joins(:user).where(users: {id: @user.id})
   end
 
   def following
