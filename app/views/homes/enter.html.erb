@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xl-12 text-center mt-5">
-        <div class="text-center mt-5">
-              <%= image_tag "enter.png", alt: "First slide" %>
-        </div>
-    </div>
-    <div class="col-xl-12 text-center mt-5">
-        <a class="btn btn-primary btn-xl js-scroll-trigger" href="/homes/top">ENTER</a>
+<div class="section">
+  <div class="slider">
+    <div class="slidercontent">
+      <h1 class="hero">EClothes</h1>
+      <h2 class="hero">Connecting people and clothes for EC..</h2>
+      <div class="call"><span><%= link_to "TOP", homes_top_path %></span></div>
+      <div class="video-container">
+        <%= video_tag "enter-movie.mp4", class: "landing_video", loop: true, autoplay: true, muted: true %>
+      </div>
     </div>
   </div>
 </div>

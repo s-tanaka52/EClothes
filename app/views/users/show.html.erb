@@ -2,14 +2,66 @@
 
     <!-- Heading Row -->
     <div class="row align-items-center mb-5 my-5">
-      <div class="col-lg-7">
-        <h2 class="title"><%= @user.user_name%>'s Profile</h2>
-        <!--%= attachment_image_tag @user, :profile_image, fallback: "noimage.jpeg", size:"150×150"% -->
+      <div class="col-lg-4">
+        <h2 class="title mt-5 mb-5"><%= @user.user_name%>'s Profile</h2>
+        <%= attachment_image_tag @user, :image, fallback: "noimage-human.png", class: "profile-img" %>
       </div>
+
       <!-- /.col-lg-8 -->
-      <div class="col-lg-5">
+      <div class="col-lg-2 mt-5">
         <h4 class="font-weight-light"><%= @user.user_name %></h4>
-        <div class="User-info">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal3">
+          <h2 class=".user-info-icon"><i class="far fa-address-card"></i></h2>
+        </button>
+
+        <!-- Modal -->
+        <div class="col-lg-3">
+        <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal3Label"><%= @user.user_name %>'s Infomation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body justify-content-center">
+                <table>
+                <tr>
+                  <th>身長</th>
+                  <td>:<%= @user.height %></td>
+                </tr>
+                <tr>
+                  <th>普段のサイズ  </th>
+                  <td>:<%= @user.size %></td>
+                </tr>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="SNS">
+          <!--Facebook-->
+          <a class="js-facebook-share" target="_blank" rel="nofollow">
+            <i class="fab fa-facebook share-btn"></i>
+          </a>
+          <!--Twitter-->
+          <a class="js-twitter-share ml-3" target="_blank" rel="nofollow">
+            <i class="fab fa-twitter share-btn"></i>
+          </a>
+          <!--line-->
+          <a class="js-line-share ml-3" rel="nofollow">
+            <i class="fab fa-line share-btn"></i>
+          </a>
+        </div>
+        <div class="User-info mt-5">
+          <% if user_signed_in? %>
           <% if @user != current_user %>
             <% if current_user.following?(@user) %>
               <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
@@ -17,23 +69,33 @@
               <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %>
             <% end %>
           <% end %>
-            </div>
-              Follow: <%= @user.followings.count %><br />
-              Follower: <%= @user.followers.count %><br />
-              Like: <%= @user.favorites.count %><br />
-            </div>
-        <div class="SNS">
-
-        </div>
-        <div class="edit">
-          <% if @user == current_user %>
-            <%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %>
-            <%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5" %>
           <% end %>
-        </div>
+            </div>
+            <p><a id="modal-open" class="button-link"></a></p>
+              <table>
+                <tr>
+                  <th class="mr-3">Follow:</th>
+                  <td><%= link_to "#{@user.followings.count}", user_followings_path(@user) %></td>
+                </tr>
+                <tr>
+                  <th class="mr-3">Follower:</th>
+                  <td><%= link_to "#{@user.followers.count}", user_followers_path(@user) %></td>
+                </tr>
+                <tr>
+                  <th class="mr-3">Likes:</th>
+                  <td><%= @user.favorites.count %></td>
+                </tr>
+                <% if @user == current_user %>
+                <tr>
+                  <th><%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %></th>
+                  <td><%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5" %></td>
+                </tr>
+                <% end %>
+              </table>
+            </div>
+        <br />
       </div>
       <!-- /.col-md-4 -->
-    </div>
     <!-- /.row -->
 
     <!-- Call to Action Well -->
@@ -44,34 +106,15 @@
     </div>
 
     <!-- Content Row -->
-    <div class="row">
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <div class="card mb-4">
-            <% @reviews.each do |review| %>
-            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-            <%= attachment_image_tag @review, :image, :fill, 300, 300 %>
-            <div class="card-body">
-            <h3 class="card-title">Title: <%= review.title %></h><br />
-            <small class="card-text"><%= review.body%></small><br />
-            <%= link_to "Read More", review_path(review), class: "btn btn-primary mt-5"%>
-            <% if review.user == current_user %>
-                <%= link_to "Edit", edit_review_path(review), class: "btn btn-primary mt-5" %>
-                <%= link_to "Delete", review_path(review), method: :delete, class: "btn btn-danger mt-5" %>
-            <% end %>
-          </div>
-          <div class="card-footer text-muted">
-            Posted on <%= review.created_at %>
-            <a href="/">EClothes</a>
-          </div>
-          <% end %>
-        </div>
-
-        </div>
+    <div class="row align-items-center my-5">
+      <div class="col-lg-5">
+        <h2 class="title"><%= @user.user_name %>'s Reviews</h2>
       </div>
-
     </div>
-    <!-- /.row -->
 
-  </div>
-  <!-- /.container -->
+    <%= render 'layouts/review-index', reviews: @reviews %>
+
+    <div class="mb-5"></div>
+
+</div>
+<!-- /.container -->

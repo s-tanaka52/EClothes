@@ -1,31 +1,13 @@
-<div class="container">
+<div class="container index-container ">
   <div class="row">
-    <div class="col-xl-8">
-      <h2 class="title">Users</h2>
-        <div class="user-box">
-          <div class="col-xl-10 reviews-box mr-10 text-center card-group" style="width:60rem">
-               <% @users.each do |user| %>
-               <section class="card col-xl-5">
-                <div class="img">
-                    <%= link_to users_path(user.id), class: "width" do %>
-                      <!--%= attachment_image_tag user, :profile_image, :fill, 100, 100 %-->
-                    <% end %>
-                </div>
-                <div class="card-content">
-                 <h6 class="card-title">Name: <%= user.user_name %></h6>
-                 <p class="card-text">Messege: <%= user.introduction %></p>
-                </div>
-                <div class="card-link">
-                 <div class="a"><%= link_to "Show User", user_path(user) %></div>
-                </div>
-                <div class="card-footer col-xl-12">
-                </div>
-                </section>
-                <% end %>
-               </div>
-              </div>
-            </div>
-        </div>
-    </div>
+     <div class="col-xl-12 text-center mt-5">
+       <h2 class="title">Users</h2>
+     </div>
+
+    <%= render 'users/index', users: @users %>
+
   </div>
+
+  <%= paginate @users %>
+
 </div>
