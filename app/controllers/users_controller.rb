@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def mypage
     @user = current_user
-    @reviews = @user.reviews
-    @favorites = Favorite.where(user_id: @user.id)
+    @reviews = @user.reviews.page(params[:page]).per(4)
+    @favorites = Favorite.where(user_id: @user.id).page(params[:page]).per(4)
   end
 
   def index
