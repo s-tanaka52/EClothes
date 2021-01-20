@@ -19,7 +19,6 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
-    @review = Review.page(params[:page]).per(4)
     #@review.review_comments.build
     @review_comment = ReviewComment.new
     @tags = @review.tag_counts_on(:tags)

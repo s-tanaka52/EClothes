@@ -6,9 +6,46 @@
         <h2 class="title mt-5 mb-5"><%= @user.user_name%>'s Profile</h2>
         <%= attachment_image_tag @user, :image, fallback: "noimage-human.png", class: "profile-img" %>
       </div>
+
       <!-- /.col-lg-8 -->
       <div class="col-lg-2 mt-5">
         <h4 class="font-weight-light"><%= @user.user_name %></h4>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal3">
+          <h2 class=".user-info-icon"><i class="far fa-address-card"></i></h2>
+        </button>
+
+        <!-- Modal -->
+        <div class="col-lg-3">
+        <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal3Label"><%= @user.user_name %>'s Infomation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body justify-content-center">
+                <table>
+                <tr>
+                  <th>身長</th>
+                  <td>:<%= @user.height %></td>
+                </tr>
+                <tr>
+                  <th>普段のサイズ  </th>
+                  <td>:<%= @user.size %></td>
+                </tr>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
         <div class="SNS">
           <!--Facebook-->
           <a class="js-facebook-share" target="_blank" rel="nofollow">

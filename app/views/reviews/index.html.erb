@@ -8,6 +8,9 @@
       <%= render 'layouts/review-index', reviews: @reviews %>
 
     <div class="paginate mt-5">
-      <%= paginate @reviews %>
+      <% if @reivew = Review.all %>
+        <%= paginate @reviews %>
+      <% end %>
+
     </div>
 </div>

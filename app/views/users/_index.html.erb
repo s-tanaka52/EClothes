@@ -12,11 +12,32 @@
          </div>
 
           <div class="name"><%= user.user_name %></div>
-          <div class="introduction"><%= user.introduction %></div>
+          <div class="introduction"></div>
 
           <div class="actions">
             <div class=""><%= link_to "profile", user_path(user.id), class: "btn" %></div>
-            <button class="btn">Message</button>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal3">Introduction</button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModal3Label"><%= user.user_name %>'s introduction</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <%= user.introduction %>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
 
