@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get '/reviews/get_category/children', to: 'reviews#get_category_children', defaults: { format: 'json' }
   get '/reviews/get_category/grandchildren', to: 'reviews#get_category_grandchildren', defaults: { format: 'json' }
+  get '/reviews/:id/get_category/children', to: 'reviews#get_category_children', defaults: { format: 'json' }
+  get '/reviews/:id/get_category/grandchildren', to: 'reviews#get_category_grandchildren', defaults: { format: 'json' }
   get '/reviews/hot_reviews' => 'reviews#hot_reviews'
   get '/reviews/new_reviews' => 'reviews#new_reviews'
   patch '/reviews/:id' => 'reviews#update'

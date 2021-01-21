@@ -12,7 +12,7 @@
       <div class="col-lg-12 text-center mt-5">
         <div class="User-info">
           <div class="col-lg-12 text-center">
-            <%= form_with model:@review, url: review_path(@review), method: :patch, local:true do |f| %>
+            <%= form_with model:@review, url: review_path(@review), method: :patch do |f| %>
             <table class="table">
               <tr class="mt-3">
                 <th><%= f.label "Image" %></th>
@@ -55,16 +55,11 @@
                 <th><%= f.label :review, :tag_list %></th>
                 <td class="pl-5"><%= f.text_field :tag_list, value: @review.tag_list.join(','), size: 50 %></td>
               </tr>
-              <div class="category">
               <tr class="mt-3">
-                <th><!%= f.label "Category" %></th>
-                <br /><td class="pl-5"><!%= select_tag 'parent_id', options_for_select(@category_parent_array), id: 'parent-category', class: 'form-control' %></td>
-              </tr>
-              <tr class="mt-3">
-                <div class="">
-                  <th><%= f.label "Category" %></th>
-                  <br /><td class="pl-5 category-form"><%= select_tag 'parent_id', options_for_select(@category_parent_array), id: 'parent-category', class: 'form-control' %></td>
-                </div>
+              <div class="">
+                <th><%= f.label "Category" %></th>
+                <br /><td class="pl-5 category-form"><%= select_tag 'parent_id', options_for_select(@category_parent_array), id: 'parent-category', class: 'form-control' %></td>
+              </div>
               </tr>
               </div>
             </table>

@@ -1,4 +1,4 @@
-(function() {
+$(function() {
   function appendOption(category) {
     let html = `<option value='${category.id}' data-category='${category.id}'>${category.name}</option>`;
     return html;
@@ -16,7 +16,7 @@
       </div>
     `;
     console.log(childrenSelectHtml)
-    ('.category-form').append(childrenSelectHtml);
+    $('.category-form').append(childrenSelectHtml);
   }
 
   function appendGrandchildrenBox(insertHTML) {
@@ -30,10 +30,10 @@
         <i class='fas fa-chevron-down'></i>
       </div>
     `;
-    ('.category-form').append(grandchildrenSelectHtml);
+    $('.category-form').append(grandchildrenSelectHtml);
   }
 
-  ('#parent-category').on('change', function() {
+  $('#parent-category').on('change', function() {
     let parentId = document.getElementById('parent-category').value;
     if (parentId != '---') {
       $.ajax({
@@ -46,8 +46,8 @@
       })
         .done(function(children) {
           console.log(children)
-          ('#children-wrapper').remove();
-          ('#grandchildren-wrapper').remove();
+          $('#children-wrapper').remove();
+          $('#grandchildren-wrapper').remove();
           let insertHTML = '';
           children.forEach(function(children) {
             insertHTML += appendOption(children);
@@ -59,13 +59,13 @@
           alert('ジャンル取得に失敗しました');
         });
     } else {
-      ('#children-wrapper').remove();
-      ('#grandchildren-wrapper').remove();
+      $('#children-wrapper').remove();
+      $('#grandchildren-wrapper').remove();
     }
   });
 
-  ('.category-form').on('change', '#children-category', function() {
-    let childrenId = ('#children-category option:selected').data('category');
+  $('.category-form').on('change', '#children-category', function() {
+    let childrenId = $('#children-category option:selected').data('category');
     if (childrenId != '---') {
       $.ajax({
         url: 'get_category/grandchildren',
@@ -77,7 +77,7 @@
       })
         .done(function(grandchildren) {
           if (grandchildren.length != 0) {
-            ('#grandchildren-wrapper').remove();
+            $('#grandchildren-wrapper').remove();
             let insertHTML = '';
             grandchildren.forEach(function(grandchildren) {
               insertHTML += appendOption(grandchildren);
@@ -89,7 +89,7 @@
           alert('ジャンル取得に失敗しました');
         });
     } else {
-      ('#grandchildren-wrapper').remove();
+      $('#grandchildren-wrapper').remove();
     }
   });
 });

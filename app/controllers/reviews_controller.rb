@@ -55,6 +55,9 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    @review.user_id = current_user.id
+    @review.tag_list.add('awesome')
+    @review.tag_list.remove('awesome')
     @category_parent_array = Category.category_parent_array_create
   end
 
