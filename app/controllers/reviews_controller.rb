@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy, :update, :edit]
 
   def index
-    @reviews = Review.page(params[:page]).per(4)
+    @reviews = Review.page(params[:page]).per(8)
     if params[:tag]
       @reviews = Review.tagged_with("#{params[:tag]}")
     end

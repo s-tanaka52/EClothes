@@ -397,3 +397,24 @@ h1 {
     padding-top: 20px;
   }
 }
+
+.rate-form {
+  float: left;
+}
+
+.review-table {
+  table-layout: fixed;
+
+  tr {
+    height: 40px;
+  }
+  th {
+    width: 20%;
+    margin: 0 auto;
+  }
+  td {
+    .category-form {
+      //width: 35%;
+    }
+  }
+}

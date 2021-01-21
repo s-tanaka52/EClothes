@@ -66,7 +66,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <%= attachment_image_tag @review, :image, :fill, 300, 300 %>
+        <%= attachment_image_tag @review, :image, :fill, 300, 300, fallback: "noimage-review.png" %>
         <hr>
 
         <!--review info-->
