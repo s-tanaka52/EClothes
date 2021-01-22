@@ -35,7 +35,7 @@
   box-sizing: border-box;
 }
 
-/* ========== header ========== */
+/*header*/
 .box-logo {
   display: flex;
   align-items: center;
@@ -56,7 +56,7 @@
   background-image: image-url('bg1.png');
 }
 
-/* ========== nav ========== */
+/* nav */
 .inner-nav {
   display: flex;
   align-items: center;
@@ -78,7 +78,7 @@
   color: #00b5ad;
 }
 
-/* ========== Smart Phone ========== */
+/* Smart Phone */
 @media screen and (max-width: 480px) {
   .header-6 {
     display: flex;
@@ -124,7 +124,6 @@
 }
 
 body {
-  //background-image: image-url("bg2.png");
   height: 100%;
 }
 
@@ -145,6 +144,7 @@ body {
   background-color: #778899;
 }
 
+/* humburger */
 .hamburger {
   display : block;
   position: fixed;
@@ -324,20 +324,20 @@ nav.globalMenuSp.active {
     height: 180px;
 }
 
-// title
+/* title */
 
 .title:first-letter {
   font-size: 150%;
   color: #f2bc57;
 }
 
-// link
+/* link */
 a {
   color: #153F59;
   font-size: 17px;
 }
 
-//table
+/* table */
 .table {
   border: 0px solid black;
 }
@@ -368,7 +368,7 @@ a {
   border-left: none;
 }
 
-/*pagenation*/
+/* pagenation */
 .pagenation {
   justify-content: center;
 }

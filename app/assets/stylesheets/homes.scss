@@ -38,14 +38,11 @@
   margin-top: 80px;
 }
 
-/*
-  Slider
-*/
+/* Slider */
 
 .section .slider,
 .section .footer {
   background-image: image-url('about-visual.png');
-  //margin-top: 60px;
   height: 600px;
   padding-top: 150px;
 }
@@ -99,9 +96,7 @@ h1.hero:after {
   cursor: pointer;
 }
 
-/*
-  Columns
-*/
+/* Columns */
 .about-container {
   text-align: center;
 }
@@ -147,9 +142,7 @@ h1.hero:after {
   color: initial;
 }
 
-/*
-  Responsive
-*/
+/* Responsive */
 
 .group:after {
   content: "";
