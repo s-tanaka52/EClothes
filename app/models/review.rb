@@ -1,4 +1,6 @@
 class Review < ApplicationRecord
+
+  #association
   belongs_to :user, optional: true
   has_many :review_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -7,8 +9,7 @@ class Review < ApplicationRecord
   has_many :review_categories
   has_many :categories, through: :review_categories
 
-  validates :user_id, presence: true
-
+  #refile
   attachment :image
 
   #tag generater
@@ -16,6 +17,8 @@ class Review < ApplicationRecord
 
   #validation
   validates :title, :body, presence: true
+  validates :user_id, presence: true
+
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?

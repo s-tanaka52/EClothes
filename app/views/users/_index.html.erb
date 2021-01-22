@@ -1,8 +1,12 @@
 <% users.each do |user| %>
     <div class="col-xl-4">
+
      <div class="frame">
+
       <div class="center">
+
         <div class="profile">
+
          <div class="image">
             <div class="circle-1"></div>
             <div class="circle-2"></div>
@@ -16,46 +20,75 @@
 
           <div class="actions">
             <div class=""><%= link_to "profile", user_path(user.id), class: "btn" %></div>
+
               <!-- Button trigger modal -->
               <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal3">Introduction</button>
 
               <!-- Modal -->
               <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+
                 <div class="modal-dialog" role="document">
+
                   <div class="modal-content">
+
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModal3Label"><%= user.user_name %>'s introduction</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
+
                     <div class="modal-body">
                       <%= user.introduction %>
                     </div>
+
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
+
                   </div>
+                  <!--/.modal-content-->
+
                 </div>
+                <!--/.modal dislog-->
+
               </div>
+              <!--/.modal fade-->
+
           </div>
+          <!--/.actions-->
+
         </div>
+        <!--/.profile-->
 
         <div class="stats">
+
           <div class="box">
             <span class="value"><%= user.reviews.count %></span>
             <span class="parameter">Reviews</span>
           </div>
+
           <div class="box">
             <span class="value"><%= user.favorites.count %></span>
             <span class="parameter">Likes</span>
           </div>
+
           <div class="box">
             <span class="value"><%= user.followers.count %></span>
             <span class="parameter">Follower</span>
           </div>
+
         </div>
+        <!--/.status-->
+
       </div>
+      <!--/.center-->
+
     </div>
+    <!--/.frame-->
+
   </div>
+  <!--/.col-xl-4-->
+
 <% end %>
+<!--/.each do-->

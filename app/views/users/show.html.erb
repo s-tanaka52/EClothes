@@ -1,4 +1,5 @@
-<div class="container">
+<%= notice %>
+  <div class="container">
 
     <!-- Heading Row -->
     <div class="row align-items-center mb-5 my-5">
@@ -7,7 +8,6 @@
         <%= attachment_image_tag @user, :image, fallback: "noimage-human.png", class: "profile-img" %>
       </div>
 
-      <!-- /.col-lg-8 -->
       <div class="col-lg-2 mt-5">
         <h4 class="font-weight-light"><%= @user.user_name %></h4>
         <!-- Button trigger modal -->
@@ -17,15 +17,20 @@
 
         <!-- Modal -->
         <div class="col-lg-3">
+
         <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+
           <div class="modal-dialog" role="document">
+
             <div class="modal-content">
+
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModal3Label"><%= @user.user_name %>'s Infomation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+
               <div class="modal-body justify-content-center">
                 <table>
                 <tr>
@@ -38,64 +43,74 @@
                 </tr>
                 </table>
               </div>
+
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
+
             </div>
+            <!--/.modal content-->
+
           </div>
+          <!--modal dialog-->
+
         </div>
+        <!--/.modal fade-->
+
+      </div>
+      <!--col-lg-3-->
+
+      <div class="SNS">
+        <!--Facebook-->
+        <a class="js-facebook-share" target="_blank" rel="nofollow">
+          <i class="fab fa-facebook share-btn"></i>
+        </a>
+        <!--Twitter-->
+        <a class="js-twitter-share ml-3" target="_blank" rel="nofollow">
+          <i class="fab fa-twitter share-btn"></i>
+        </a>
+        <!--line-->
+        <a class="js-line-share ml-3" rel="nofollow">
+          <i class="fab fa-line share-btn"></i>
+        </a>
       </div>
 
-        <div class="SNS">
-          <!--Facebook-->
-          <a class="js-facebook-share" target="_blank" rel="nofollow">
-            <i class="fab fa-facebook share-btn"></i>
-          </a>
-          <!--Twitter-->
-          <a class="js-twitter-share ml-3" target="_blank" rel="nofollow">
-            <i class="fab fa-twitter share-btn"></i>
-          </a>
-          <!--line-->
-          <a class="js-line-share ml-3" rel="nofollow">
-            <i class="fab fa-line share-btn"></i>
-          </a>
-        </div>
-        <div class="User-info mt-5">
-          <% if user_signed_in? %>
-          <% if @user != current_user %>
-            <% if current_user.following?(@user) %>
-              <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
+       <div class="User-info mt-5">
+        <% if user_signed_in? %>
+        <% if @user != current_user %>
+          <% if current_user.following?(@user) %>
+            <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
             <% else %>
               <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %>
             <% end %>
           <% end %>
           <% end %>
-            </div>
-            <p><a id="modal-open" class="button-link"></a></p>
-              <table>
-                <tr>
-                  <th class="mr-3">Follow:</th>
-                  <td><%= link_to "#{@user.followings.count}", user_followings_path(@user) %></td>
-                </tr>
-                <tr>
-                  <th class="mr-3">Follower:</th>
-                  <td><%= link_to "#{@user.followers.count}", user_followers_path(@user) %></td>
-                </tr>
-                <tr>
-                  <th class="mr-3">Likes:</th>
-                  <td><%= @user.favorites.count %></td>
-                </tr>
-                <% if @user == current_user %>
-                <tr>
-                  <th><%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %></th>
-                  <td><%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5" %></td>
-                </tr>
-                <% end %>
-              </table>
-            </div>
-        <br />
+        </div>
+        <p><a id="modal-open" class="button-link"></a></p>
+          <table>
+            <tr>
+              <th class="mr-3">Follow:</th>
+              <td><%= link_to "#{@user.followings.count}", user_followings_path(@user) %></td>
+            </tr>
+            <tr>
+              <th class="mr-3">Follower:</th>
+              <td><%= link_to "#{@user.followers.count}", user_followers_path(@user) %></td>
+            </tr>
+            <tr>
+              <th class="mr-3">Likes:</th>
+              <td><%= @user.favorites.count %></td>
+            </tr>
+            <% if @user == current_user %>
+            <tr>
+              <th><%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %></th>
+              <td><%= link_to "退会", user_relationships_path(@user), class: "btn btn-danger mt-5" %></td>
+            </tr>
+            <% end %>
+          </table>
       </div>
-      <!-- /.col-md-4 -->
+      <!--/.col-lg-2 mt-5-->
+      <br />
+    </div>
     <!-- /.row -->
 
     <!-- Call to Action Well -->

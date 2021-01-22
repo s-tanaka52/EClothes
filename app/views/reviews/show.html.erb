@@ -1,3 +1,5 @@
+<%= notice %>
+
 <!--reeoe msg!-->
 <%= render "layouts/error_msg", resource: @review_comment %>
 
@@ -23,15 +25,20 @@
         </button>
           <!-- Modal -->
         <div class="col-lg-3">
+
         <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+
           <div class="modal-dialog" role="document">
+
             <div class="modal-content">
+
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModal3Label"><%= @review.user.user_name %>'s Infomation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+
               <div class="modal-body justify-content-center">
                 <table>
                 <tr>
@@ -44,147 +51,170 @@
                 </tr>
                 </table>
               </div>
+
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
+
             </div>
+            <!--modal-content-->
+
           </div>
+          <!--modal-dialog-->
+
         </div>
+        <!--modal fade-->
+
       </div>
-        </p>
+      <!--col-lg-3-->
 
-        <hr>
+      </p>
+      <!--lead-->
 
-        <!-- Date/Time -->
-        <p>Posted on <%= @review.created_at %>
-        <% if @review.user == current_user %>
-            <%= link_to "Edit", edit_review_path(@review), class: "btn btn-primary ml-5 mr-2" %>
-            <%= link_to "Delete", review_path(@review), method: :delete, class: "btn btn-danger" %>
-        <% end %>
-        </p>
+      <hr>
 
-        <hr>
+      <!-- Date/Time -->
+      <p>Posted on <%= @review.created_at %>
+      <% if @review.user == current_user %>
+          <%= link_to "Edit", edit_review_path(@review), class: "btn btn-primary ml-5 mr-2" %>
+          <%= link_to "Delete", review_path(@review), method: :delete, class: "btn btn-danger" %>
+      <% end %>
+      </p>
 
-        <!-- Preview Image -->
-        <%= attachment_image_tag @review, :image, :fill, 300, 300, fallback: "noimage-review.png" %>
-        <hr>
+      <hr>
 
-        <!--review info-->
-        <div class="row">
-          <p class="lead col-xl-3">Brand: <%= @review.brand_name %></p>
-          <p class="lead col-xl-4 mb-5">Item: <%= @review.item_name %></p>
-          <div class="category col-xl-5">
-            <h5>Category</h5>
-            <tr>
-              <th></th>
+      <!-- Preview Image -->
+      <%= attachment_image_tag @review, :image, :fill, 300, 300, fallback: "noimage-review.png" %>
+      <hr>
+
+      <!--review info-->
+      <div class="row">
+        <p class="lead col-xl-3">Brand: <%= @review.brand_name %></p>
+        <p class="lead col-xl-4 mb-5">Item: <%= @review.item_name %></p>
+        <div class="category col-xl-5">
+          <h5>Category</h5>
+          <tr>
+            <th></th>
             <% @categories.each do |category| %>
-              <td>
-                <%= category.name %>
-              </td>
+            <td>
+              <%= category.name %>
+            </td>
             <% end  %>
-            </tr>
-          </div>
+          </tr>
         </div>
-
-        <!-- Review Content -->
-        <div class="review-body">
-          <p class="col-xl-12 lead mb-5"><%= @review.body %></p>
-        </div>
-
-        <div class="row">
-          <!--rate-->
-          <div class="col-xl-3 rate mt-5 mb-5">
-            <h5>Rate</h5>
-            <h5><i class="fas fa-star mt-4"></i><%= @review.rate %>/<i class="fas fa-star"></i>5.0</h5>
-          </div>
-          <!-- Tags index -->
-          <div class="col-xl-5 tags mt-5">
-            <h5>Tags</h5>
-            <% if @tags.present? %>
-              <% @tags.each do |tag| %>
-                <%= link_to "#{tag.name}(#{tag.taggings_count})", reviews_path(tag: tag.name), class: "btn btn--radius mt-2" %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-
-        <!--Favorite-->
-        <tr id="review_<%= @review.id%>">
-          <td class="favorite-btn">
-            <% if user_signed_in? %>
-              <%= render 'favorites/favorite-btn', review: @review %>
-            <% else %>
-              ̈♥︎<%= @review.favorites.count %>
-            <% end %>
-          </td>
-        </tr>
-
-        <div class="SNS mt-5 mb-5">
-          <h5>SHARE!</h5>
-          <!--Facebook-->
-          <a class="js-facebook-share" target="_blank" rel="nofollow">
-            <i class="fab fa-facebook share-btn"></i>
-          </a>
-          <!--Twitter-->
-          <a class="js-twitter-share ml-3" target="_blank" rel="nofollow">
-            <i class="fab fa-twitter share-btn"></i>
-          </a>
-          <!--line-->
-          <a class="js-line-share ml-3" rel="nofollow">
-            <i class="fab fa-line share-btn"></i>
-          </a>
-        </div>
-
-        <!-- Comments Form -->
-        <% if user_signed_in? %>
-        <div class="card my-4">
-          <h5 class="card-header"> Comment:</h5>
-            <div class="card-body">
-              <div class="form-group">
-                <div class="new-comment">
-                <%= form_with(model: @review_comment, url: "/reviews/#{@review.id}/review_comments", local: true, method: :post) do |f| %>
-                  <%= f.text_area :comment, rows:'5',placeholder: "comment", class: "form-control" %>
-                  <%= f.submit "Comment!", class: "btn btn-primary mt-4" %>
-                <% end %>
-                </div>
-              </div>
-          </div>
-        </div>
-        <% end %>
-
-
-        <% @review.review_comments.each do |review_comment| %>
-        <div class="card my-4">
-          <div class="card-header">
-            Comment by_<%= review_comment.user.user_name %>
-            <% if review_comment.user == current_user %>
-                <%= link_to "Delete", review_path(@review.review_comments), method: :delete, class: "btn btn-denger ml-5" %>
-            <% end %>
-          </div>
-            <div class="card-body">
-              <div class="form-group">
-        <div class="media mb-1">
-        <div class="media-body">
-          <div class="row">
-            <div class="col-xl-1">
-              <%= attachment_image_tag(review_comment.user, :image, :fill, 100, 100, fallback: "noimage-human.png", class: "comment-profile-img") %>
-            </div>
-            <div class="col-xl-10">
-              <p><%= review_comment.comment %></p>
-              <p><%= review_comment.user.name %></p>
-            </div>
-          </div>
-                </div>
-              </div>
-            </div>
-
-        <% end %>
-         </div>
       </div>
+
+      <!-- Review Content -->
+      <div class="review-body">
+        <p class="col-xl-12 lead mb-5"><%= @review.body %></p>
+      </div>
+
+      <div class="row">
+        <!--rate-->
+        <div class="col-xl-3 rate mt-5 mb-5">
+          <h5>Rate</h5>
+          <h5><i class="fas fa-star mt-4"></i><%= @review.rate %>/<i class="fas fa-star"></i>5.0</h5>
+        </div>
+        <!-- Tags index -->
+        <div class="col-xl-5 tags mt-5">
+          <h5>Tags</h5>
+           <% if @tags.present? %>
+            <% @tags.each do |tag| %>
+              <%= link_to "#{tag.name}(#{tag.taggings_count})", reviews_path(tag: tag.name), class: "btn btn--radius mt-2" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+       <!--Favorite-->
+      <tr id="review_<%= @review.id%>">
+        <td class="favorite-btn">
+           <% if user_signed_in? %>
+            <%= render 'favorites/favorite-btn', review: @review %>
+          <% else %>
+            ̈♥︎<%= @review.favorites.count %>
+          <% end %>
+        </td>
+      </tr>
+
+      <div class="SNS mt-5 mb-5">
+        <h5>SHARE!</h5>
+        <!--Facebook-->
+        <a class="js-facebook-share" target="_blank" rel="nofollow">
+          <i class="fab fa-facebook share-btn"></i>
+        </a>
+        <!--Twitter-->
+        <a class="js-twitter-share ml-3" target="_blank" rel="nofollow">
+          <i class="fab fa-twitter share-btn"></i>
+        </a>
+        <!--line-->
+        <a class="js-line-share ml-3" rel="nofollow">
+          <i class="fab fa-line share-btn"></i>
+        </a>
+      </div>
+
+      <!-- Comments Form -->
+      <% if user_signed_in? %>
+      <div class="card my-4">
+        <h5 class="card-header"> Comment:</h5>
+          <div class="card-body">
+            <div class="form-group">
+              <div class="new-comment">
+              <%= form_with(model: @review_comment, url: "/reviews/#{@review.id}/review_comments", local: true, method: :post) do |f| %>
+                <%= f.text_area :comment, rows:'5',placeholder: "comment", class: "form-control" %>
+                <%= f.submit "Comment!", class: "btn btn-primary mt-4" %>
+              <% end %>
+              <!--form_with-->
+
+              </div>
+            </div>
+          </div>
+      </div>
+      <% end %>
+      <!--user_signed_in?-->
+
+
+      <% @review.review_comments.each do |review_comment| %>
+      <div class="card my-4">
+
+        <div class="card-header">
+          Comment by_<%= review_comment.user.user_name %>
+          <% if review_comment.user == current_user %>
+              <%= link_to "Delete", review_path(@review.review_comments), method: :delete, class: "btn btn-denger ml-5" %>
+          <% end %>
+          <!--cirrent_user-->
+        </div>
+
+          <div class="card-body">
+            <div class="form-group">
+              <div class="media mb-1">
+                <div class="media-body">
+                  <div class="row">
+                    <div class="col-xl-1">
+                    <%= attachment_image_tag(review_comment.user, :image, :fill, 100, 100, fallback: "noimage-human.png", class: "comment-profile-img") %>
+                    </div>
+                     <div class="col-xl-10">
+                      <p><%= review_comment.comment %></p>
+                      <p><%= review_comment.user.name %></p>
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+         <!--/.card-body-->
+
+      </div>
+      <!--/.card my-4-->
+
+      <% end %>
+      <!--/.each do-->
 
       </div>
       <!-- /.col-xl-10 -->
+
     </div>
     <!--/.row-->
+
   </div>
   <!--/.container-->

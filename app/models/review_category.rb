@@ -1,7 +1,9 @@
 class ReviewCategory < ApplicationRecord
+  #assosiation
   belongs_to :review
   belongs_to :category
 
+  #category setting
   def self.maltilevel_category_create(review, parent_id, children_id, grandchildren_id)
     if parent_id.present? && parent_id != '---'
       category = Category.find(parent_id)

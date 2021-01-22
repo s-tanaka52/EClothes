@@ -1,13 +1,16 @@
 <div class="container">
     <!-- Heading Row -->
     <div class="row align-items-center mb-5 my-5">
+
       <div class="col-lg-4 mt-5">
         <h2 class="title mb-5">My Page</h2>
         <%= attachment_image_tag @user, :image, fallback: "noimage-human.png", class: "profile-img" %>
       </div>
-      <!-- /.col-lg-8 -->
+      <!-- /.col-lg-4 -->
+
       <div class="col-lg-2 mt-5">
         <h4 class=""><%= @user.user_name %></h4>
+
         <div class="SNS">
           <!--Facebook-->
           <a class="js-facebook-share" target="_blank" rel="nofollow">
@@ -22,6 +25,7 @@
             <i class="fab fa-line share-btn"></i>
           </a>
         </div>
+
         <div class="User-info mt-3">
           <table>
             <tr>
@@ -44,13 +48,12 @@
             <% end %>
           </table>
         </div>
+        <!--/.user info-->
 
-
-
-        </div>
-         <!-- /.col-lg- -->
       </div>
-      <!-- /.row -->
+      <!-- /.col-lg- -->
+    </div>
+    <!-- /.row -->
 
     <!-- Call to Action Well -->
     <div class="card bg-light my-5 py-4 text-center">
@@ -63,8 +66,8 @@
      <div class="col-xl-12 mt-5">
        <h2 class="title">My Reviews</h2>
      </div>
-
-     <%= render 'layouts/review-index', reviews: @reviews %>
+       <!--my reviews-->
+       <%= render 'layouts/review-index', reviews: @reviews %>
 
      <div class="mb-5"></div>
     </div>
@@ -79,35 +82,50 @@
         <% review = Review.find_by(id: review.review_id) %>
         <% user = User.find_by(id: review.user_id) %>
         <div class="wrapper text-left mt-5">
+
           <div class="card-container col-lg-12 mb-4 text-left">
+
             <div class="top">
               <%= link_to review_path(review.id) do %>
                 <%= attachment_image_tag review, :image, :fill, 400, 400, fallback: "noimage-human.png" %>
               <% end %>
             </div>
+
             <div class="bottom">
+
               <div class="left">
+
                 <div class="details">
                   <h6><%= review.title.truncate(15) %></h6>
                     <p class="contents"><%= link_to "#{review.user.user_name}", user_path(review.user)%></p>
                 </div>
-              <div class="buy">
-                <%= link_to review_path(review) do %>
-                  <i class="fas fa-angle-double-right"></i>
-                <% end %>
+
+                <div class="buy">
+                  <%= link_to review_path(review) do %>
+                    <i class="fas fa-angle-double-right"></i>
+                  <% end %>
+                </div>
+
               </div>
-            </div>
-            <div class="right">
-              <div class="done"><i class="fas fa-info-circle"></i></div>
+              <!--/.left-->
+
+              <div class="right">
+                <div class="done"><i class="fas fa-info-circle"></i></div>
                 <div class="details">
                   <h4><%= review.title.truncate(15) %></h4>
                     <p><%= link_to "#{review.user.user_name}", user_path(review.user)%></p>
                 </div>
                 <div class="remove"><i class="fas fa-info-circle"></i></div>
+              </div>
+
             </div>
-            </div>
+            <!--/.bottom-->
+
           </div>
+          <!--/.card-container-->
+
           <div class="inside">
+
             <div class="icon"><i class="fas fa-info-circle"></i></div>
               <div class="contents">
                 <table>
@@ -149,13 +167,23 @@
                   <%= link_to "Edit", edit_review_path(review), class: "btn btn-primary mt-5" %>
                   <%= link_to "Delete", review_path(review), method: :delete, class: "btn btn-danger mt-5" %>
                 <% end %>
+
               </div>
-            </div>
+              <!--/.contents-->
+
+          </div>
+          <!--/.inside-->
+
         </div>
+        <!--/.wrapper-->
+
       <% end %>
+      <!--/.each do-->
     </div>
+    <!--/.row-->
 
   </div>
+  <!--row-->
 
 </div>
 <!-- /.container -->

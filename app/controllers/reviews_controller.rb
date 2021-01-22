@@ -19,13 +19,10 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
-    #@review.review_comments.build
     @review_comment = ReviewComment.new
     @tags = @review.tag_counts_on(:tags)
     @category_id = @review.category_ids
     @categories = Category.find(@category_id)
-    #@category_childs = @category_grandchilds.map { |category| category.parent }.compact
-    #@category_parents = @category_childs.map { |category| category.parent }.compact
   end
 
   def new
@@ -46,7 +43,7 @@ class ReviewsController < ApplicationController
       params[:children_id],
       params[:grandchildren_id]
     )
-      redirect_to review_path(@review.id)
+      redirect_to review_path(@review.id), notice: "レビューを投稿しました"
     else
       @category_parent_array = Category.category_parent_array_create
       render :new
@@ -70,7 +67,7 @@ class ReviewsController < ApplicationController
       params[:children_id],
       params[:grandchildren_id]
     )
-      redirect_to review_path(@review.id)
+      redirect_to review_path(@review.id), notice: "レビューを編集しました"
     else
       @category_parent_array = Category.category_parent_array_create
       render :edit
@@ -80,7 +77,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-      redirect_to reviews_path
+      redirect_to reviews_path, notice: "レビューを削除しました"
   end
 
   def get_category_children

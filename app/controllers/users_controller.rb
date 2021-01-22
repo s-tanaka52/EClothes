@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to users_my_page_path(@user)
+      redirect_to users_my_page_path(@user),notice: "ユーザ情報を編集しました"
     else
       render :edit
     end
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-     redirect_to root_path
+     redirect_to root_path, notice: "退会処理が完了しました"
   end
 
   private

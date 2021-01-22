@@ -1,4 +1,5 @@
 class ReviewComment < ApplicationRecord
+  #assosiation
   belongs_to :user
   belongs_to :review
 

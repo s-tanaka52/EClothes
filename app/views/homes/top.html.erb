@@ -1,4 +1,4 @@
-  <!-- Page Content -->
+<%= notice %>
   <div class="container">
 
     <div class="row">
@@ -14,15 +14,12 @@
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
               <%= video_tag "1.mp4", class: "landing_video d-block img-fluid", loop: true, autoplay: true, muted: true %>
-              <!--%= image_tag "1.png", alt: "First slide", class: "d-block img-fluid" %-->
             </div>
             <div class="carousel-item">
               <%= video_tag "2.mp4", class: "landing_video d-block img-fluid", loop: true, autoplay: true, muted: true %>
-              <!%= image_tag "2.png", alt: "Second slide", class: "d-block img-fluid" %>
             </div>
             <div class="carousel-item">
               <%= video_tag "3.mp4", class: "landing_video d-block img-fluid", loop: true, autoplay: true, muted: true %>
-              <!--%= image_tag "3.png", alt: "Third slide", class: "d-block img-fluid" %-->
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -34,8 +31,13 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
+        <!--/.carousel-->
+
       </div>
+      <!--/.col-xl-12-->
+
     </div>
+    <!--/.row-->
 
     <div class="row">
       <div class="col-xl-12 text-center">
@@ -43,7 +45,8 @@
       </div>
     </div>
 
-    <%= render 'layouts/review-index', reviews: @new_reviews %>
+      <!--newreviews-->
+      <%= render 'layouts/review-index', reviews: @new_reviews %>
 
     <div class="col-xl-12 text-center mt-5 mb-5">
       <%= link_to "View More >", reviews_new_reviews_path %>
@@ -55,7 +58,9 @@
       </div>
     </div>
 
-    <%= render 'layouts/review-index', reviews: @all_ranks %>
+
+      <!--hotreviews-->
+      <%= render 'layouts/review-index', reviews: @all_ranks %>
 
     <div class="col-xl-12 text-center mt-5 mb-5">
       <%= link_to "View More >", reviews_hot_reviews_path %>
