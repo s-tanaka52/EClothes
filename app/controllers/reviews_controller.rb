@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   def index
     @reviews = Review.page(params[:page]).per(8)
     if params[:tag]
-      @reviews = Review.tagged_with("#{params[:tag]}")
+      @reviews = Review.tagged_with("#{params[:tag]}").page(params[:page]).per(8)
     end
   end
 

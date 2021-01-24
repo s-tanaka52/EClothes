@@ -122,6 +122,7 @@
 
 #main {
   margin-top: 50px;
+  width: 100%;
 }
 
 body {
@@ -149,14 +150,12 @@ body {
 .hamburger {
   display : block;
   position: fixed;
-  z-index : 3;
   right : 32px;
   top   : 32px;
   width : 42px;
   height: 42px;
   cursor: pointer;
   text-align: center;
-
 }
 .hamburger span {
   display : block;
@@ -211,7 +210,6 @@ body {
   transform        : rotate(45deg);
 }
 
-
 .hamburger::after {
   position: absolute;
   top: 50%;
@@ -231,7 +229,6 @@ body {
 
 nav.globalMenuSp {
   position: fixed;
-  z-index : 2;
   top  : 0;
   left : 0;
   color: #fff;
@@ -272,6 +269,7 @@ nav.globalMenuSp ul li a {
 
 nav.globalMenuSp.active {
   transform: translateX(0%);
+
 }
 
 .select-box {
@@ -393,4 +391,8 @@ a {
 .setting-container {
   height: 520px;
   margin-top: 50px;
+}
+
+.user-form {
+  padding-top: 80px;
 }
