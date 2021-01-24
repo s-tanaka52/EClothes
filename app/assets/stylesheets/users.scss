@@ -4,12 +4,17 @@
 
 $yellow: #F2BC57;
 
+.user-info {
+  height: 280px;
+  width: 300px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
 .center {
   position: absolute;
   top: 50px;
   left: 40px;
-  height: 299px;
-  width: 320px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -19,7 +24,6 @@ $yellow: #F2BC57;
 .profile {
   float: left;
   width: 200px;
-  height: 320px;
   text-align: center;
 
   .image {
@@ -154,4 +158,10 @@ $yellow: #F2BC57;
 
 .font-weight-light {
   float: left;
+}
+
+.profile {
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
 }

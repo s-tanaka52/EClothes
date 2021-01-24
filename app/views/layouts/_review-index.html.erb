@@ -1,10 +1,10 @@
-<div class="row text-left">
+<div class="row text-center">
 
   <% reviews.each do |review| %>
 
-    <div class="wrapper text-left mt-5">
+    <div class="wrapper mt-5 text-center">
 
-      <div class="card-container col-lg-12 mb-4 text-left">
+      <div class="card-container col-lg-12 mb-4 text-center">
 
         <div class="top">
           <%= link_to review_path(review.id) do %>
@@ -21,7 +21,7 @@
                 <p class="contents"><%= link_to "#{review.user.user_name}", user_path(review.user)%></p>
             </div>
 
-            <div class="buy">
+            <div class="info">
               <%= link_to review_path(review) do %>
                 <i class="fas fa-angle-double-right"></i>
               <% end %>

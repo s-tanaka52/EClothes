@@ -21,7 +21,6 @@ h1 {
   width: 300px;
   height: 400px;
   background: white;
-  //margin: auto;
   position: relative;
   overflow: hidden;
   border-radius: 10px 10px 10px 10px;
@@ -67,7 +66,7 @@ h1 {
           float: left;
           width: calc(70% - 40px);
         }
-        .buy{
+        .info{
           float: right;
           width: calc(30% - 2px);
           height: 100%;
@@ -197,7 +196,6 @@ h1 {
   }
 }
 
-/*card */
 /*tags style*/
 .btn--orange,
 a.btn--orange {
@@ -402,7 +400,6 @@ h1 {
 
 .review-table {
   table-layout: fixed;
-
   tr {
     height: 40px;
   }
@@ -413,5 +410,12 @@ h1 {
   td {
     .category-form {
     }
+  }
+}
+
+.wrapper {
+  @media screen and (max-width: 414px) {
+		width: 200px;
+		height: 400px;
   }
 }
