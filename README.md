@@ -1,6 +1,6 @@
 ## EClothes
+![icon (1)](https://user-images.githubusercontent.com/72797145/105673312-360c3680-5f29-11eb-8c79-9911a3d518c3.png)
 
-![logo](https://drive.google.com/file/d/1psKWAgcs2ya5mHQS-8VrrXoaXYfMz3q0/view?usp=sharing)
 
 ### サイト概要
 ファッションアイテムのレビューサイト
@@ -37,12 +37,14 @@ https://docs.google.com/spreadsheets/d/18lcNqHmy6KFVKYgn9IpOwiuYy2HsgISqkZ0-0vvz
 引用：Adobe color</details>
 
 <details><summary>サイトイメージ</summary>
-1.Homes/top
-  ![homes/top](https://drive.google.com/file/d/16_4yl1UtPTn8sboK-MRSkdHZdOBRGPP4/view?usp=sharing "Homes#top")
-2.search/before
-  ![search/before](https://drive.google.com/file/d/1IBnKYyrLDpZUyOJuKz74SKPJpyP55raC/view?usp=sharing "before")
-3.search/after
-  ![search/after](https://drive.google.com/file/d/1D3bilX2kK-6-OEHhoq3uWuldM4ZRvQ16/view?usp=sharing "after")</details>
+1.enter
+  ![Animated GIF-downsized_large](https://user-images.githubusercontent.com/72797145/105673966-23dec800-5f2a-11eb-8a86-fa0840735169.gif)
+2.Homes/top
+  <img width="500" alt="homes#top" src="https://user-images.githubusercontent.com/72797145/105674049-483aa480-5f2a-11eb-918c-677c961017d1.png">
+3.search/before
+  <img width="750" alt="before" src="https://user-images.githubusercontent.com/72797145/105674147-6bfdea80-5f2a-11eb-9cf0-fc628a679f56.png">
+4.search/after
+  <img width="750" alt="after" src="https://user-images.githubusercontent.com/72797145/105674436-d878e980-5f2a-11eb-89cb-3c9006ff58be.png"><details>
 
 ### 開発環境
 - OS：Linux(CentOS)
