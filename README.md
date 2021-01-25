@@ -1,4 +1,5 @@
 ## EClothes
+<img src="https://drive.google.com/file/d/1psKWAgcs2ya5mHQS-8VrrXoaXYfMz3q0/view?usp=sharing" alt="EClothes_logo" >
 ![logo](https://drive.google.com/file/d/1psKWAgcs2ya5mHQS-8VrrXoaXYfMz3q0/view?usp=sharing)
 
 ### サイト概要
