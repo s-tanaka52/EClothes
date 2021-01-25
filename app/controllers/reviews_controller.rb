@@ -60,7 +60,8 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    if @review.update(review_params)
+    if @review.user_id = current_user.id
+      @review.update(review_params)
       ReviewCategory.maltilevel_category_create(
       @review,
       params[:parent_id],
@@ -76,8 +77,12 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-    @review.destroy
+    if @review.user_id = current_user.id
+      @review.destroy
       redirect_to reviews_path, notice: "レビューを削除しました"
+    else
+      render :show
+    end
   end
 
   def get_category_children

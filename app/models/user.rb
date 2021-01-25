@@ -17,6 +17,9 @@ class User < ApplicationRecord
   #refile
   attachment :image
 
+  #validate
+  validates :name, :user_name,:password, presence: true
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end

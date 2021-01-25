@@ -17,7 +17,6 @@ class Review < ApplicationRecord
 
   #validation
   validates :title, :body, presence: true
-  validates :user_id, presence: true
 
 
   def favorited_by?(user)
