@@ -48,9 +48,15 @@
     </header>
 
     <div id="main">
-
       <%= yield %>
-
+      <% if user_signed_in? %>
+        <%= link_to new_review_path, class: "new_review" do %>
+          <button class="new_review">
+            New Review
+              <span>post.. ??</span>
+          </button>
+        <% end %>
+      <% end %>
     </div>
 
   <!-- Footer -->

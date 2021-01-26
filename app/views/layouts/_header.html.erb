@@ -15,74 +15,69 @@
 						<div class="col-xl-9 main-nav">
 							<ul class="nav text-center">
 							  <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to new_review_path, class: "nav-link" do %>
-              <i class="far fa-plus-square"></i>
-            <% end %>
-          </li>
-          <li class="nav-item active">
-            <%= link_to "Home", homes_top_path, class: "nav-link" %>
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <%= link_to "About", homes_about_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "My Page", users_my_page_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Reviews", reviews_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Users", users_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log Out",destroy_user_session_path(current_user.id), method: :delete, class: "nav-link" %>
-          </li>
-          <% else %>
-          <li class="nav-item active">
-            <%= link_to "Home", homes_top_path, class: "nav-link" %>
-            </a>
-          </li>
-          <li class="nav-item">
-            <%= link_to "About", homes_about_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Reviews", reviews_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Users", users_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
-          </li>
-          <% end %>
-          <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+                  <li class="nav-item active">
+                    <%= link_to "Home", homes_top_path, class: "nav-link" %>
+                      <span class="sr-only">(current)</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "About", homes_about_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "My Page", users_my_page_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Reviews", reviews_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Users", users_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Log Out",destroy_user_session_path(current_user.id), method: :delete, class: "nav-link" %>
+                  </li>
+                  <% else %>
+                  <li class="nav-item active">
+                    <%= link_to "Home", homes_top_path, class: "nav-link" %>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "About", homes_about_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Reviews", reviews_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Users", users_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+                  </li>
+                  <% end %>
+                  <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
 
-          <nav class="globalMenuSp">
-            <h3 class="search-tite text-center mt-5">Search ?</h3>
-            <div id="review-search">
-            <ul>
-             <%= search_form_for @search, url: search_reviews_path do |f| %>
-                <%= f.label "Key Word" , class: "search-field mt-1"%>
-                <br />
-                <%= f.search_field :body_cont ,class: 'search-form form-controll mt-3 mb-5', size: 50 , placeholder: 'ex) 21SS' %>
-                <%= button_tag type:'submit',class:'btn btn-primary' do %>
-                  <i class="fas fa-search"></i>
-                <% end %>
-             　<% end %>
-							</ul>
-						</div>
-					</div>
-				</nav>
-		  </div>
+                  <nav class="globalMenuSp">
+                    <h3 class="search-tite text-center mt-5">Search ?</h3>
+                    <div id="review-search">
+                    <ul>
+                     <%= search_form_for @search, url: search_reviews_path do |f| %>
+                        <%= f.label "Key Word" , class: "search-field mt-1"%>
+                        <br />
+                        <%= f.search_field :body_cont ,class: 'search-form form-controll mt-3 mb-5', size: 50 , placeholder: 'ex) 21SS' %>
+                        <%= button_tag type:'submit',class:'btn btn-primary' do %>
+                          <i class="fas fa-search"></i>
+                        <% end %>
+             　        <% end %>
+							      </ul>
+						        </div>
+				        </div>
+				          </nav>
+		        </div>
 		</header>
 	</div>
