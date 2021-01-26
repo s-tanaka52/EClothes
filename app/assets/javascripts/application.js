@@ -18,6 +18,7 @@
 //= require activestorage
 //= require_tree .
 
+//search
 $(function() {
     $('.hamburger').click(function() {
         $(this).toggleClass('active');
