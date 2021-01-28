@@ -16,7 +16,8 @@ class Review < ApplicationRecord
   acts_as_taggable
 
   #validation
-  validates :title, :body, presence: true
+  validates :title, :body, presence: true, exclusion: { in: ['ゴミ','ごみ', 'かす','カス','gomi','kasu','ごみアイテム','かすアイテム'] }
+
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
