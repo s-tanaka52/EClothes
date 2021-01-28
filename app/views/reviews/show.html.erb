@@ -130,6 +130,7 @@
       <tr id="review_<%= @review.id%>">
         <td class="favorite-btn">
            <% if user_signed_in? %>
+             <% if @review.favorited_by?(current_user) %>
              <p>
               <%= link_to review_favorites_path(@review), method: :delete do %>
                 ♥<%= @review.favorites.count %> いいね
@@ -141,9 +142,10 @@
                 ♡<%= @review.favorites.count %> いいね
               <% end %>
             </p>
-            <% else %>
-                ̈♥︎<%= @review.favorites.count %>
             <% end %>
+           <% else %>
+              ̈♥︎<%= @review.favorites.count %>
+           <% end %>
         </td>
       </tr>
 
