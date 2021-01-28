@@ -43,7 +43,6 @@
             <% if @user == current_user %>
             <tr>
               <th><%= link_to "Edit", edit_user_path(@user), class: "btn btn-primary mt-5" %></th>
-              <td><%= link_to "退会", users_unsubscribe_path, class: "btn btn-danger mt-5" %></td>
             </tr>
             <% end %>
           </table>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'homes/top' => 'homes#top'
   get 'homes/about' => 'homes#about'
 
+  get 'users/unsubscribe' => 'users#unsubscribe'
   get 'users/my_page' => 'users#mypage'
   get 'users/unsubscribe' => 'users#unsubscribe'
   resources :users, only: [:index, :show, :edit, :update,:destroy] do
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
+
 
   get '/reviews/get_category/children', to: 'reviews#get_category_children', defaults: { format: 'json' }
   get '/reviews/get_category/grandchildren', to: 'reviews#get_category_grandchildren', defaults: { format: 'json' }
