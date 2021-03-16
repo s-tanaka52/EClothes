@@ -20,6 +20,13 @@ class User < ApplicationRecord
   #validate
   validates :name, :user_name, presence: true
 
+  #guest users
+  def self.guest
+    find_or_create_by!(name: 'guest01', user_name: 'guest01', email: 'guest01@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end

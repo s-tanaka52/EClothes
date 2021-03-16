@@ -49,6 +49,14 @@ class UsersController < ApplicationController
   def unsubscribe
   end
 
+  #new guest
+  def new_guest
+    user = User.guest
+    sign_in user
+    redirect_to homes_top_path, notice: "ゲストでログインしました"
+  end
+
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy

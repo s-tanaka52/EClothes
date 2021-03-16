@@ -20,9 +20,14 @@
         </div>
       <% end %>
 
-      <div class="actions text-center mt-2">
-        <%= f.submit "Log in" %>
+      <div class="text-center mt-3">
+        <%= f.submit "Log in", class: "btn btn--radius mt-2" %>
       </div>
+
+      <div class="text-center tags">
+        <%= link_to 'Guest Login', users_guest_sign_in_path, method: :post, class: "btn btn--radius mt-2" %>
+      </div>
+
     <% end %>
 
   </div>

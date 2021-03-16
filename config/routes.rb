@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users#new_guest'
+  end
+
   root to: 'homes#enter'
   get 'homes/top' => 'homes#top'
   get 'homes/about' => 'homes#about'
